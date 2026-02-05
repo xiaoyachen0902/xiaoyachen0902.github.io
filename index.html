@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
-      /* 更高对比度的孟菲斯配色 */
       --bg:#fef6ff;
       --card:#ffffff;
       --text-main:#1f2933;
@@ -27,23 +26,18 @@
       margin:0;
       font-family:system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
       color:var(--text-main);
-      /* 更柔和的孟菲斯背景：浅粉黄配紫蓝点缀 */
       background:
-        /* 右上角圆形渐变 */
         radial-gradient(circle at 85% 15%, rgba(196, 181, 253, 0.25) 0, transparent 32%),
-        /* 左下角圆形渐变 */
         radial-gradient(circle at 12% 88%, rgba(252, 211, 77, 0.28) 0, transparent 35%),
-        /* 底色：柔和的粉-黄大渐变 */
         linear-gradient(
           125deg,
           #fef3c7 0%,
           #fce7f3 45%,
           #ddd6fe 100%
         );
-      overflow:hidden; /* scroll only inside .snap */
+      overflow:hidden; 
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23fbbf24" stroke="%231f2937" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="%231f2937"/></svg>') 12 12, auto;
       
-      /* 禁用文本选择 */
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -55,7 +49,6 @@
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="10" fill="%2360a5fa" stroke="%231f2937" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="%231f2937"/></svg>') 14 14, pointer;
     }
 
-    /* ===== Top Nav (Tabs) ===== */
     .nav{
       position:fixed; top:0; left:0; right:0;
       height:var(--navH);
@@ -162,7 +155,6 @@
       position:relative;
       isolation:isolate;
     }
-    /* Contact 区块高度减半 */
     section#contact.panel{
       min-height:43vh;
       padding: calc(var(--navH) + 20px) 20px 32px;
@@ -172,7 +164,6 @@
       min-height:70vh;
       padding: calc(var(--navH) + 20px) 20px 32px;
     }
-    /* Different background per section */
     section.panel::before{
       content:"";
       position:absolute; inset:0;
@@ -196,7 +187,6 @@
 
     .wrap{ width:min(1160px, 100%); position:relative; }
 
-    /* Memphis-ish shapes */
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-15px) rotate(3deg); }
@@ -792,7 +782,6 @@
       .modal-images{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
-    /* ===== Lightbox（全屏图片查看器） ===== */
     .lightbox{
       display:none;
       position:fixed;
@@ -923,9 +912,7 @@
     }
     .chev svg{ width:18px; height:18px; }
 
-    /* 去掉翻页动画，保持普通滚动 */
-
-    /* ===== 滚动进度指示器（右侧小点） ===== */
+  
     .scroll-indicator{
       position:fixed;
       right:24px;
@@ -1458,9 +1445,7 @@
     });
     const scrollDots = Array.from(scrollIndicator.querySelectorAll(".scroll-dot"));
 
-    // ===== 简单的普通滚动，只保留指示器功能 =====
-    
-    // 更新指示器高亮
+
     function updateIndicator(){
       const y = snap.scrollTop + window.innerHeight / 2;
       let currentIndex = 0;
@@ -1480,10 +1465,8 @@
       });
     }
 
-    // 监听滚动，更新指示器
     snap.addEventListener("scroll", updateIndicator);
     
-    // 初始化
     updateIndicator();
 
     // 导航点击：简单滚动到对应section
@@ -1506,7 +1489,6 @@
       });
     });
 
-    // 向下箭头
     document.getElementById("goNext").addEventListener("click", () => {
       const currentY = snap.scrollTop;
       const nextPanel = panels.find(p => p.offsetTop > currentY + 100);
@@ -1515,11 +1497,10 @@
       }
     });
 
-    // Tab 高亮跟随滚动
     const tabById = new Map(tabs.map(t => [t.getAttribute("href").slice(1), t]));
     
     function updateTabHighlight(){
-      const y = snap.scrollTop + 200; // 偏移一点，提前高亮
+      const y = snap.scrollTop + 200; 
       let activeId = panels[0].id;
       
       for (let i = panels.length - 1; i >= 0; i--) {
@@ -1791,7 +1772,6 @@
       if (e.key === "Escape" && !lightbox.classList.contains("active")) closeModal(); 
     });
 
-    // ===== 多语言切换系统 =====
     const translations = {
       ja: {
         nav: {
@@ -2049,67 +2029,54 @@
       });
     });
 
-    // ===== 防复制保护 =====
     
-    // 1. 禁用右键菜单
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault();
       return false;
     });
 
-    // 2. 禁用复制快捷键（Ctrl+C / Cmd+C）
     document.addEventListener("keydown", (e) => {
-      // 禁用 Ctrl+C / Cmd+C
       if ((e.ctrlKey || e.metaKey) && e.key === "c") {
         e.preventDefault();
         return false;
       }
-      // 禁用 Ctrl+U / Cmd+U (查看源代码)
       if ((e.ctrlKey || e.metaKey) && e.key === "u") {
         e.preventDefault();
         return false;
       }
-      // 禁用 F12 (开发者工具)
       if (e.key === "F12") {
         e.preventDefault();
         return false;
       }
-      // 禁用 Ctrl+Shift+I / Cmd+Option+I (开发者工具)
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "I") {
         e.preventDefault();
         return false;
       }
-      // 禁用 Ctrl+Shift+J / Cmd+Option+J (控制台)
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "J") {
         e.preventDefault();
         return false;
       }
-      // 禁用 Ctrl+Shift+C / Cmd+Option+C (检查元素)
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "C") {
         e.preventDefault();
         return false;
       }
     });
 
-    // 3. 禁用复制事件
     document.addEventListener("copy", (e) => {
       e.preventDefault();
       return false;
     });
 
-    // 4. 禁用剪切事件
     document.addEventListener("cut", (e) => {
       e.preventDefault();
       return false;
     });
 
-    // 5. 禁用选择事件（额外保护）
     document.addEventListener("selectstart", (e) => {
       e.preventDefault();
       return false;
     });
 
-    // 6. 禁用拖拽选择
     document.addEventListener("dragstart", (e) => {
       e.preventDefault();
       return false;
