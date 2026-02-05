@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio | Xiaoya Chen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      /* 更高对比度的孟菲斯配色 */
+      --bg:#fef6ff;
+      --card:#ffffff;
+      --text-main:#1f2933;
+      --text-muted:#6b7280;
+      --ink:#111827;
+
+      --accent1:#ff6b6b;
+      --accent2:#4f46e5;
+      --accent3:#facc15;
+      --accent4:#06b6d4;
+
+      --navH:64px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body { height:100%; }
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+      color:var(--text-main);
+      /* 更柔和的孟菲斯背景：浅粉黄配紫蓝点缀 */
+      background:
+        /* 右上角圆形渐变 */
+        radial-gradient(circle at 85% 15%, rgba(196, 181, 253, 0.25) 0, transparent 32%),
+        /* 左下角圆形渐变 */
+        radial-gradient(circle at 12% 88%, rgba(252, 211, 77, 0.28) 0, transparent 35%),
+        /* 底色：柔和的粉-黄大渐变 */
+        linear-gradient(
+          125deg,
+          #fef3c7 0%,
+          #fce7f3 45%,
+          #ddd6fe 100%
+        );
+      overflow:hidden; /* scroll only inside .snap */
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23fbbf24" stroke="%231f2937" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="%231f2937"/></svg>') 12 12, auto;
+      
+      /* 禁用文本选择 */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Memphis style cursor for interactive elements */
+    a, button, [role="button"], .app-card, .proj, .modal-images img {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="10" fill="%2360a5fa" stroke="%231f2937" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="%231f2937"/></svg>') 14 14, pointer;
+    }
+
+    /* ===== Top Nav (Tabs) ===== */
+    .nav{
+      position:fixed; top:0; left:0; right:0;
+      height:var(--navH);
+      z-index:100;
+      display:flex; align-items:center; justify-content:center;
+      padding:10px 16px;
+      background:rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border-bottom:1.5px solid rgba(17,24,39,0.15);
+    }
+    .nav-inner{
+      width:min(1040px, 100%);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none; color:inherit;
+      min-width: 160px;
+    }
+    .logo{
+      width:34px; height:34px;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      box-shadow:2px 2px 0 var(--ink);
+      background:
+        linear-gradient(135deg, #fef3c7 0, #fef3c7 55%, #e0f2fe 55%),
+        radial-gradient(circle at 80% 30%, #ff6b6b 0, #ff6b6b 30%, transparent 31%);
+    }
+    .brand-text{ display:flex; flex-direction:column; line-height:1.1; }
+    .brand-text .name{ font-size:13px; font-weight:700; letter-spacing:0.03em; }
+    .brand-text .role{ font-size:11px; color:var(--text-muted); }
+
+    .tabs{
+      display:flex; gap:8px; align-items:center;
+      flex-wrap:wrap; justify-content:flex-end;
+    }
+    
+    /* Language Toggle */
+    .lang-toggle{
+      display:inline-flex; align-items:center;
+      gap:4px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:2px solid var(--ink);
+      background:#fff;
+      box-shadow:2px 2px 0 var(--ink);
+      font-size:11px;
+      font-weight:600;
+      cursor:pointer;
+      transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      margin-left:6px;
+    }
+    .lang-toggle:hover{
+      transform: translateY(-2px) scale(1.05);
+      box-shadow:3px 3px 0 var(--ink);
+      background:#fef3c7;
+    }
+    .lang-option{
+      padding:3px 6px;
+      border-radius:999px;
+      transition: all 200ms ease;
+      cursor:pointer;
+    }
+    .lang-option.active{
+      background:var(--ink);
+      color:#fff;
+    }
+    .tab{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:2px solid var(--ink);
+      background:#fff;
+      box-shadow:2px 2px 0 var(--ink);
+      font-size:12px;
+      text-decoration:none;
+      color:var(--ink);
+      user-select:none;
+      white-space:nowrap;
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    }
+    .tab:hover{ transform: translate(-1px,-1px); box-shadow:3px 3px 0 var(--ink); background:#fef3c7; }
+    .tab.active{ background:#111827; color:#fff; box-shadow:3px 3px 0 var(--ink); }
+
+    /* ===== Scroll container (we will do "one-wheel one-page" with inertia) ===== */
+    .snap{
+      position:relative;
+      height:100vh;
+      overflow-y:auto;
+      overscroll-behavior: contain;
+      scroll-behavior:smooth;
+      scrollbar-gutter: stable both-edges;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ===== Sections ===== */
+    section.panel{
+      min-height:86vh;
+      padding: calc(var(--navH) + 32px) 20px 56px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      position:relative;
+      isolation:isolate;
+    }
+    /* Contact 区块高度减半 */
+    section#contact.panel{
+      min-height:43vh;
+      padding: calc(var(--navH) + 20px) 20px 32px;
+    }
+
+    section#home.panel{
+      min-height:70vh;
+      padding: calc(var(--navH) + 20px) 20px 32px;
+    }
+    /* Different background per section */
+    section.panel::before{
+      content:"";
+      position:absolute; inset:0;
+      z-index:-2;
+      opacity:1;
+      background:
+        radial-gradient(circle at 0 0, rgba(255,255,255,0.55) 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,0.65) 0, transparent 55%),
+        var(--panel-bg, var(--bg));
+    }
+    section.panel::after{
+      content:"";
+      position:absolute; inset:0;
+      z-index:-1;
+      opacity:0.35;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 0, transparent 35%),
+        radial-gradient(circle at 80% 65%, rgba(255,255,255,0.75) 0, transparent 38%);
+      pointer-events:none;
+    }
+
+    .wrap{ width:min(1160px, 100%); position:relative; }
+
+    /* Memphis-ish shapes */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(3deg); }
+    }
+    @keyframes float-reverse {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(15px) rotate(-3deg); }
+    }
+    
+    .shape{ 
+      position:absolute; 
+      z-index:0; 
+      opacity:0.75; 
+      pointer-events:none;
+      animation: float 6s ease-in-out infinite;
+    }
+    .shape:nth-child(even){
+      animation: float-reverse 7s ease-in-out infinite;
+    }
+    .shape-dot{
+      width:140px; height:140px;
+      background-image: radial-gradient(var(--ink) 1px, transparent 1px);
+      background-size:10px 10px;
+    }
+    .shape-diag{
+      width:120px; height:120px;
+      background-image: linear-gradient(135deg, #f97316 0, #f97316 4px, transparent 4px, transparent 8px);
+      background-size:12px 12px;
+    }
+    .shape-wave{
+      width:150px; height:40px;
+      background-image: repeating-linear-gradient(90deg, var(--accent2) 0, var(--accent2) 4px, transparent 4px, transparent 8px);
+      border-radius:999px;
+    }
+
+    /* Section heading */
+    .section-title{
+      display:flex; align-items:center; gap:10px;
+      font-size:16px;
+      margin:0 0 18px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--ink);
+    }
+    section.panel:not(#home) .section-title{ justify-content:center; }
+    .section-bar{
+      width:46px; height:3px;
+      background: repeating-linear-gradient(90deg, var(--accent1) 0, var(--accent1) 6px, var(--accent2) 6px, var(--accent2) 12px);
+      border-radius:999px;
+    }
+    .sub{
+      font-size:15px;
+      color:var(--text-muted);
+      line-height:1.85;
+      max-width:860px;
+      margin:0 auto 18px;
+      text-align:center;
+    }
+    .block-title{
+      font-size:12px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--ink);
+      text-align:center;
+      margin:8px 0 6px;
+    }
+    .section-stack{ display:flex; flex-direction:column; gap:16px; }
+    .about-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin-top:8px;
+    }
+    .about-divider{
+      grid-column:1 / -1;
+      text-align:center;
+      font-size:12px;
+      letter-spacing:0.22em;
+      text-transform:uppercase;
+      color:var(--ink);
+      margin:4px 0 2px;
+    }
+    @media (max-width: 820px){
+      .about-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Cards / pills */
+    .card{
+      background:var(--card);
+      border:2px solid var(--ink);
+      border-radius:22px;
+      box-shadow:6px 6px 0 var(--ink);
+      padding:18px 18px;
+      position:relative;
+      overflow:hidden;
+      transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .card:hover{
+      transform: translate(-3px, -3px) rotate(-1deg);
+      box-shadow:9px 9px 0 var(--ink);
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.7), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(219, 234, 254, 0.8), transparent 55%);
+      opacity:0.75;
+      pointer-events:none;
+      transition: opacity 300ms ease;
+    }
+    .card:hover::before{
+      opacity:1;
+    }
+    .card > *{ position:relative; }
+
+    .pill-row{ display:flex; flex-wrap:wrap; gap:8px; }
+    .pill{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1.5px solid var(--ink);
+      background:#e0f2fe;
+      box-shadow:2px 2px 0 var(--ink);
+      color:var(--ink);
+      transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .pill:hover{
+      transform: translateY(-2px) scale(1.05);
+      box-shadow:3px 3px 0 var(--ink);
+    }
+    .pill.alt{ background:#fee2e2; }
+    .pill.yellow{ background:#fef3c7; }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 16px;
+      border-radius:999px;
+      border:2px solid var(--ink);
+      background:var(--ink);
+      color:#f9fafb;
+      font-size:14px;
+      text-decoration:none;
+      box-shadow:3px 3px 0 var(--ink);
+      transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn:hover{
+      transform: translate(-3px, -3px) rotate(-2deg) scale(1.05);
+      box-shadow:6px 6px 0 var(--ink);
+      background:#fef3c7;
+      color:var(--ink);
+    }
+    .btn:active{
+      transform: translate(0, 0) scale(0.98);
+      box-shadow:2px 2px 0 var(--ink);
+    }
+    .btn-outline{ background:#fff; color:var(--ink); }
+    .btn-outline:hover{ background:#e0f2fe; }
+
+    /* ===== HERO (Home) ===== */
+    .hero{
+      display:grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.25fr);
+      gap:22px;
+      align-items:center;
+    }
+    @media (max-width: 820px){ .hero{ grid-template-columns: 1fr; } }
+    .hero h1{
+      font-size: clamp(34px, 6vw, 52px);
+      line-height:1.08;
+      margin:0 0 10px;
+      letter-spacing:0.02em;
+    }
+    .hero .lead{
+      font-size:16px;
+      color:var(--text-muted);
+      line-height:1.85;
+      margin:0 0 16px;
+    }
+    .tag{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1.5px solid var(--ink);
+      background:#fff;
+      box-shadow:2px 2px 0 var(--ink);
+      transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .tag:hover{
+      transform: translateY(-2px) rotate(-2deg);
+      box-shadow:4px 4px 0 var(--ink);
+      background:#fef3c7;
+    }
+    .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; }
+    .hero-links{ display:flex; flex-wrap:wrap; gap:10px; }
+
+    /* Memphis style photo display */
+    .memphis-photos{
+      position:relative;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:28px 24px;
+      padding:20px;
+      max-width:420px;
+    }
+    .photo-frame{
+      position:relative;
+      width:100%;
+      aspect-ratio: 1/1;
+      background:#fff;
+      border:3px solid var(--ink);
+      border-radius:20px;
+      box-shadow:6px 6px 0 var(--ink);
+      overflow:hidden;
+      transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .photo-frame:hover{
+      transform:rotate(0deg) scale(1.08) !important;
+      box-shadow:8px 8px 0 var(--ink);
+      z-index:5;
+    }
+    .photo-frame:nth-child(1){
+      transform:rotate(-3deg);
+      border-radius:24px;
+    }
+    .photo-frame:nth-child(2){
+      transform:rotate(4deg);
+      border-radius:50%;
+      margin-top:12px;
+    }
+    .photo-frame:nth-child(3){
+      transform:rotate(2deg);
+      border-radius:16px;
+      margin-top:-8px;
+    }
+    .photo-frame:nth-child(4){
+      transform:rotate(-4deg);
+      border-radius:50%;
+      margin-top:6px;
+    }
+    .photo-frame::before{
+      content:"";
+      position:absolute;
+      top:-8px;
+      left:-8px;
+      right:-8px;
+      bottom:-8px;
+      border:2px dashed #fb923c;
+      border-radius:inherit;
+      z-index:-1;
+      opacity:0.6;
+    }
+    .photo-frame:nth-child(even)::before{
+      border-color:#60a5fa;
+    }
+    .photo-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .photo-deco{
+      position:absolute;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      border:2px solid var(--ink);
+      z-index:10;
+      transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .photo-frame:hover .photo-deco{
+      transform: scale(1.3) rotate(180deg);
+    }
+    .photo-deco.pink{
+      background:#fbbf24;
+      top:-10px;
+      right:20px;
+    }
+    .photo-deco.blue{
+      background:#60a5fa;
+      bottom:-10px;
+      left:15px;
+      width:35px;
+      height:35px;
+    }
+    .photo-deco.purple{
+      background:#a78bfa;
+      top:-12px;
+      left:25px;
+    }
+    .photo-deco.orange{
+      background:#fb923c;
+      bottom:-8px;
+      right:18px;
+      width:26px;
+      height:26px;
+    }
+    @media (max-width: 820px){
+      .memphis-photos{
+        max-width:340px;
+        margin:30px auto 0;
+        gap:20px 16px;
+      }
+      .photo-frame{
+        border-width:2px;
+        box-shadow:4px 4px 0 var(--ink);
+      }
+    }
+
+    .mini{ display:flex; flex-direction:column; gap:10px; }
+    .mini .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px;
+      border:1.5px solid var(--ink);
+      background:#fde68a;
+      border-radius:999px;
+      padding:6px 10px;
+      width:max-content;
+    }
+    .dot{ width:9px; height:9px; border-radius:999px; background:#f97316; /* 橙色更配孟菲斯 */ }
+    .mini .k{ display:flex; flex-wrap:wrap; gap:8px; }
+    .mini .k span{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1.5px solid var(--ink);
+      background:#e0f2fe;
+    }
+
+    /* ===== Projects/Work cards ===== */
+    .grid2{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+    @media (max-width: 820px){ .grid2{ grid-template-columns: 1fr; } }
+    .proj{
+      cursor:pointer;
+      padding:16px 16px;
+      border-radius:20px;
+      border:2px solid var(--ink);
+      background:#fff;
+      box-shadow:4px 4px 0 var(--ink);
+      position:relative;
+      overflow:hidden;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+      margin-top:35px;
+    }
+    .proj:hover{ transform: translate(-1px,-1px); box-shadow:5px 5px 0 var(--ink); }
+    .proj .label{ font-size:11px; color:var(--text-muted); margin:0 0 6px; }
+    .proj h3{ font-size:15px; margin:0 0 6px; }
+    .proj p{ margin:0 0 10px; color:var(--text-muted); font-size:13px; line-height:1.75; }
+    .meta{ display:flex; flex-wrap:wrap; gap:6px; font-size:11px; color:var(--ink); }
+    .featured{
+      position:absolute; top:-14px; right:-18px;
+      transform: rotate(12deg);
+      background:var(--accent2);
+      color:#fff;
+      border:2px solid var(--ink);
+      box-shadow:2px 2px 0 var(--ink);
+      border-radius:999px;
+      padding:6px 22px;
+      font-size:10px;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+    }
+
+    /* ===== Personal app cards ===== */
+    .app-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:18px;
+      margin-top:10px;
+      margin-bottom:40px; /* 和 Work 之间留空 */
+    }
+    @media (max-width: 900px){
+      .app-grid{ grid-template-columns: 1fr; }
+    }
+    .app-card{
+      border:2px solid var(--ink);
+      border-radius:22px;
+      background:#fff;
+      box-shadow:6px 6px 0 var(--ink);
+      padding:16px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      cursor:pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .app-card:hover{
+      transform: translate(-2px,-2px);
+      box-shadow:8px 8px 0 var(--ink);
+    }
+    .app-title{
+      margin:0;
+      font-size:16px;
+      font-weight:800;
+    }
+    .app-sub{
+      margin:0;
+      font-size:13px;
+      color:var(--text-muted);
+      line-height:1.75;
+    }
+    .app-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      font-size:11px;
+    }
+    .app-tags span{
+      border:1.5px solid var(--ink);
+      border-radius:999px;
+      padding:4px 8px;
+      background:#e0f2fe;
+      box-shadow:2px 2px 0 var(--ink);
+    }
+    .app-media{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:8px;
+    }
+    .app-media img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      border-radius:14px;
+      border:2px solid var(--ink);
+      box-shadow:3px 3px 0 var(--ink);
+      background:#fff;
+    }
+    .app-list{
+      margin:0;
+      padding-left:16px;
+      font-size:12px;
+      color:var(--text-muted);
+      line-height:1.7;
+    }
+
+    /* ===== Timeline ===== */
+    .timeline{
+      max-width:980px;
+      margin: 0 auto;
+      display:grid;
+      gap:16px;
+      position:relative;
+      padding-left:8px;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:120px;
+      top:0;
+      bottom:0;
+      width:3px;
+      background: repeating-linear-gradient(
+        180deg,
+        var(--ink) 0px,
+        var(--ink) 10px,
+        transparent 10px,
+        transparent 18px
+      );
+      border-radius:999px;
+      opacity:0.8;
+    }
+    .t-item{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap:14px;
+      align-items:stretch;
+      position:relative;
+    }
+    @media (max-width: 720px){
+      .t-item{ grid-template-columns: 1fr; }
+      .timeline::before{ display:none; }
+    }
+    .t-date{
+      font-size:12px;
+      color:var(--text-muted);
+      padding:10px 12px;
+      border:1.5px solid var(--ink);
+      border-radius:16px;
+      background:#fff;
+      box-shadow:2px 2px 0 var(--ink);
+      height:max-content;
+    }
+    .t-card{
+      position:relative;
+      border:2px solid var(--ink);
+      border-radius:20px;
+      background:#fff;
+      box-shadow:4px 4px 0 var(--ink);
+      padding:14px 14px;
+      overflow:hidden;
+    }
+    .t-card::before{
+      content:"";
+      position:absolute;
+      left:-32px;
+      top:18px;
+      width:12px;
+      height:12px;
+      border-radius:999px;
+      border:2px solid var(--ink);
+      background:#fff;
+      box-shadow:2px 2px 0 var(--ink);
+    }
+    @media (max-width: 720px){
+      .t-card::before{ display:none; }
+    }
+    .t-title{
+      margin:0 0 6px;
+      font-size:14px;
+      font-weight:800;
+    }
+    .t-sub{
+      margin:0 0 8px;
+      font-size:12px;
+      color:var(--text-muted);
+      line-height:1.7;
+    }
+    .t-tags{
+      display:flex; flex-wrap:wrap; gap:6px;
+      font-size:11px;
+    }
+    .t-tags span{
+      border:1.5px solid var(--ink);
+      border-radius:999px;
+      padding:4px 8px;
+      background:#e0f2fe;
+      box-shadow:2px 2px 0 var(--ink);
+    }
+
+    /* ===== Dialog ===== */
+    .overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,0.45);
+      z-index:200;
+      padding: 90px 18px 18px;
+    }
+    .modal{
+      width:min(680px, 100%);
+      margin:0 auto;
+      background:#fff;
+      border:2px solid var(--ink);
+      border-radius:22px;
+      box-shadow:6px 6px 0 var(--ink);
+      padding:18px 16px;
+      position:relative;
+      max-height:85vh;
+      overflow-y:auto;
+    }
+    .close{
+      position:absolute;
+      top:10px; right:12px;
+      border:none;
+      background:transparent;
+      font-size:20px;
+      cursor:pointer;
+    }
+    .modal h3{ margin:4px 0 10px; font-size:18px; }
+    .modal .text{
+      white-space:pre-line;
+      margin:0 0 12px;
+      font-size:13px;
+      color:#4b5563;
+      line-height:1.85;
+    }
+    .modal-images{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:8px;
+      margin-top:10px;
+    }
+    .modal-images img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:14px;
+      border:2px solid var(--ink);
+      box-shadow:3px 3px 0 var(--ink);
+      cursor:pointer;
+      transition: transform 120ms ease;
+    }
+    .modal-images img:hover{
+      transform: scale(1.05);
+    }
+    @media (max-width: 720px){
+      .modal-images{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* ===== Lightbox（全屏图片查看器） ===== */
+    .lightbox{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0, 0, 0, 0.92);
+      z-index:300;
+      overflow-y:auto;
+      padding:60px 20px 40px;
+    }
+    .lightbox.active{
+      display:block;
+    }
+    .lightbox-content{
+      max-width:25%;
+      margin:0 auto;
+      position:relative;
+    }
+    .lightbox-content img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:8px;
+    }
+    .lightbox-close{
+      position:fixed;
+      top:20px;
+      right:30px;
+      background:transparent;
+      border:none;
+      color:#fff;
+      font-size:40px;
+      cursor:pointer;
+      padding:5px 10px;
+      line-height:1;
+      transition: transform 120ms ease;
+      z-index:310;
+    }
+    .lightbox-close:hover{
+      transform: scale(1.2);
+    }
+    .lightbox-nav{
+      position:fixed;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(255, 255, 255, 0.9);
+      border:2px solid var(--ink);
+      border-radius:50%;
+      width:48px;
+      height:48px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      font-size:24px;
+      color:var(--ink);
+      font-weight:bold;
+      transition: all 120ms ease;
+      user-select:none;
+      z-index:310;
+    }
+    .lightbox-nav:hover{
+      background:#fff;
+      transform:translateY(-50%) scale(1.1);
+    }
+    .lightbox-nav.prev{
+      left:30px;
+    }
+    .lightbox-nav.next{
+      right:30px;
+    }
+    @media (max-width: 1024px){
+      .lightbox-content{
+        max-width:40%;
+      }
+    }
+    @media (max-width: 720px){
+      .lightbox-content{
+        max-width:60%;
+      }
+    }
+    @media (max-width: 480px){
+      .lightbox-content{
+        max-width:80%;
+      }
+    }
+      .lightbox-nav{
+        width:40px;
+        height:40px;
+        font-size:20px;
+      }
+      .lightbox-nav.prev{
+        left:10px;
+      }
+      .lightbox-nav.next{
+        right:10px;
+      }
+      .lightbox-close{
+        right:15px;
+        font-size:36px;
+      }
+    }
+
+    /* ===== Bottom hint arrow ===== */
+    .hint{
+      margin-top:18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--text-muted);
+      font-size:12px;
+    }
+    .chev{
+      width:38px; height:38px;
+      border-radius:999px;
+      border:2px solid var(--ink);
+      box-shadow:3px 3px 0 var(--ink);
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    }
+    .chev:hover{
+      background:#fef3c7;
+      transform: translate(-1px,-1px);
+      box-shadow:4px 4px 0 var(--ink);
+    }
+    .chev svg{ width:18px; height:18px; }
+
+    /* 去掉翻页动画，保持普通滚动 */
+
+    /* ===== 滚动进度指示器（右侧小点） ===== */
+    .scroll-indicator{
+      position:fixed;
+      right:24px;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:99;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .scroll-dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      border:2px solid var(--ink);
+      background:#fff;
+      box-shadow:1px 1px 0 var(--ink);
+      cursor:pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .scroll-dot:hover{
+      transform:scale(1.3);
+      background:#fef3c7;
+    }
+    .scroll-dot.active{
+      background:var(--ink);
+      transform:scale(1.4);
+      box-shadow:2px 2px 0 var(--ink);
+    }
+    @media (max-width: 820px){
+      .scroll-indicator{ display:none; }
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .tab, .btn, .proj, .chev{ transition:none; }
+      section.panel{ transition:none; }
+      .scroll-dot{ transition:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 滚动进度指示器 -->
+  <div class="scroll-indicator" id="scrollIndicator" aria-label="Page navigation">
+    <!-- 动态生成 -->
+  </div>
+
+  <!-- Top Tabs -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="#home" data-nav>
+        <span class="logo" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="name">Xiaoya Chen</span>
+          <span class="role">Software Engineer</span>
+        </span>
+      </a>
+
+      <div class="tabs" role="tablist" aria-label="Sections">
+        <a class="tab active" href="#home" data-nav role="tab" data-i18n="nav.home">トップ</a>
+        <a class="tab" href="#work" data-nav role="tab" data-i18n="nav.work">ポートフォリオ</a>
+        <a class="tab" href="#skills" data-nav role="tab" data-i18n="nav.skills">スキル</a>
+        <a class="tab" href="#timeline" data-nav role="tab" data-i18n="nav.timeline">経歴</a>
+        <a class="tab" href="#contact" data-nav role="tab" data-i18n="nav.contact">連絡先</a>
+        
+        <div class="lang-toggle" id="langToggle">
+          <span class="lang-option active" data-lang="ja">日本語</span>
+          <span class="lang-option" data-lang="en">English</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Scroll area -->
+  <div class="snap" id="snap">
+
+<!-- HOME -->
+    <section class="panel" id="home" style="--panel-bg: #fef3c7;" aria-label="Top">
+      <div class="shape shape-dot" style="top:120px; right:-36px;"></div>
+      <div class="shape shape-diag" style="top:240px; left:-26px; transform:rotate(10deg);"></div>
+      <div class="shape shape-wave" style="bottom:80px; right:48px; transform:rotate(-10deg);"></div>
+
+      <div class="wrap">
+        <div class="hero">
+          <div>
+            <h1 style="color:#443b3b; text-shadow: 0 2px 0 rgba(17,24,39,0.25);">
+              Portfolio<br>Xiaoya Chen（陳 暁亜）
+            </h1>
+            <p class="lead" style="color: rgba(103, 95, 95, 0.92);" data-i18n="home.intro">
+                2014年に日本へ渡り、早稲田大学で学生生活を送りました。<br>
+                卒業後はイギリスの大学院に進学し、視野と好奇心を広げる日々を経験。<br>
+                <br>
+                2022年から IT エンジニアとしてキャリアをスタート。<br>
+                現在は Java / Kotlin を中心に Web システムを開発しています。<br>
+                バックエンドがメインですが、Vue.js を使ったフロントエンド開発も好きです。<br>
+                <br>
+                コードを書いていない時間は、海外旅行の計画を立てたり、週末に山へ登って自然の中でリフレッシュしたり。新しい景色に出会うことが、ものづくりの原動力になっています。<br>
+              </p>
+              
+
+            <div class="tag-row" aria-label="tags">
+              <span class="tag">Java / Kotlin</span>
+              <span class="tag">Spring Boot / MyBatis</span>
+              <span class="tag">Backoffice / Payment</span>
+              <span class="tag">Vue.js / JavaScript</span>
+              <span class="tag">AWS / Kubernetes</span>
+            </div>
+
+            <div class="hero-links">
+              <a class="btn" href="https://github.com/your-github" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="btn btn-outline" href="mailto:yamashitapp@gmail.com">Email</a>
+            </div>
+
+            <div class="hint" style="color: rgba(98, 87, 87, 0.9);margin-top: 30px;">
+              <div class="chev" id="goNext" title="Scroll to next section" aria-label="Scroll to next section">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </div>
+              <span data-i18n="home.scroll">下にスクロール</span>
+            </div>
+          </div>
+
+          <!-- Memphis Style Photos -->
+          <div class="memphis-photos">
+            <div class="photo-frame">
+              <img src="./assets/home/me.JPG" alt="Xiaoya Chen">
+              <div class="photo-deco pink"></div>
+            </div>
+            <div class="photo-frame">
+              <img src="./assets/home/cat.JPG" alt="My pet">
+              <div class="photo-deco blue"></div>
+            </div>
+            <div class="photo-frame">
+              <img src="./assets/home/BF1CF9C6-4557-4A97-B479-41B221770BBA.jpeg" alt="My life">
+              <div class="photo-deco purple"></div>
+            </div>
+            <div class="photo-frame">
+              <img src="./assets/home/CC1D3165-7481-4493-9633-572C01036230.jpeg" alt="My journey">
+              <div class="photo-deco orange"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK / PORTFOLIO -->
+    <section class="panel" id="work" style="--panel-bg:#dbeafe;" aria-label="Portfolio">
+      <div class="shape shape-diag" style="top:130px; right:-36px; transform:rotate(-8deg);"></div>
+      <div class="shape shape-dot" style="bottom:70px; left:-28px;"></div>
+
+      <div class="wrap">
+        <div class="section-title"><div class="section-bar"></div><span data-i18n="work.title">Projects</span></div>
+        <p class="sub" data-i18n="work.subtitle">
+          個人制作と実務で担当した内容をまとめています（実務はクリックで詳細）。
+        </p>
+
+        <div class="block-title" data-i18n="work.personal">Personal Projects</div>
+        <div class="app-grid">
+          <div class="app-card" data-key="pet">
+            <h3 class="app-title" data-i18n="projects.pet.title">もふもふペットダイアリー（ペット記録アプリ）IOS(JPN/ENG/CHN)</h3>
+            <p class="app-sub" data-i18n="projects.pet.subtitle">大切なペット家族との毎日を、かわいく・簡単に記録できる iOS アプリです。</p>
+            <div class="app-tags">
+              <span data-i18n="projects.pet.tag1">健康管理</span>
+              <span data-i18n="projects.pet.tag2">AI相談</span>
+              <span data-i18n="projects.pet.tag3">リマインダー</span>
+              <span data-i18n="projects.pet.tag4">成長記録</span>
+            </div>
+            <div class="app-media">
+              <img src="./assets/pet/homepage.png" alt="ペットアプリホーム画面">
+              <img src="./assets/pet/detailai.png" alt="AI相談機能">
+              <img src="./assets/pet/remindercard.png" alt="リマインダー">
+            </div>
+            <ul class="app-list">
+              <li data-i18n="projects.pet.feature1">スマートリマインダー：お世話の時間を逃さない</li>
+              <li data-i18n="projects.pet.feature2">AI アシスタント：24時間いつでも飼育相談</li>
+              <li data-i18n="projects.pet.feature3">健康管理：体重・通院・投薬記録を一括管理</li>
+            </ul>
+          </div>
+
+          <div class="app-card" data-key="mbti">
+            <h3 class="app-title" data-i18n="projects.mbti.title">性格图旅（IOS CHN Only）</h3>
+            <p class="app-sub" data-i18n="projects.mbti.subtitle">性格診断（MBTI）に基づいて、あなたにぴったりな旅程を提案する iOS アプリです。</p>
+            <div class="app-tags">
+              <span data-i18n="projects.mbti.tag1">性格診断</span>
+              <span data-i18n="projects.mbti.tag2">プラン自動生成</span>
+              <span data-i18n="projects.mbti.tag3">お気に入り管理</span>
+              <span data-i18n="projects.mbti.tag4">旅行記録</span>
+            </div>
+            <div class="app-media">
+              <img src="./assets/mbti/cover.jpg" alt="MBTIアプリカバー">
+              <img src="./assets/mbti/select.jpg" alt="診断選択画面">
+              <img src="./assets/mbti/favor.jpg" alt="お気に入り管理">
+            </div>
+            <ul class="app-list">
+              <li data-i18n="projects.mbti.feature1">MBTI に基づいた行程の自動提案</li>
+              <li data-i18n="projects.mbti.feature2">気になる場所をカテゴリーごとに保存</li>
+              <li data-i18n="projects.mbti.feature3">旅行メモ・評価・タグで思い出を整理</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block-title" data-i18n="work.workProjects">Work Projects</div>
+        <div class="grid2">
+          <article class="proj" data-key="bo_inquiry" tabindex="0" role="button" aria-label="Open project detail">
+            <div class="label" data-i18n="workProjects.bo_inquiry.label">Backoffice / Automation（現職）</div>
+            <h3 data-i18n="workProjects.bo_inquiry.title">ユーザー／加盟店照会業務の自動化</h3>
+            <p data-i18n="workProjects.bo_inquiry.description">
+              官公庁・外部第三者連携が前提の高信頼領域で、紙運用の照会業務をシステム化。
+            </p>
+            <div class="meta">
+              <span>Java</span>・<span>Spring Boot</span>・<span>MySQL</span>・<span>Kubernetes</span>
+            </div>
+          </article>
+
+          <article class="proj" data-key="bo_ops" tabindex="0" role="button" aria-label="Open project detail">
+            <div class="label" data-i18n="workProjects.bo_ops.label">Backoffice / Operations（現職）</div>
+            <h3 data-i18n="workProjects.bo_ops.title">社内業務支援の機能追加・UI改善</h3>
+            <p data-i18n="workProjects.bo_ops.description">
+              ユーザー/加盟店情報管理、クーポン発行、一括更新などの改善を継続。
+            </p>
+            <div class="meta">
+              <span>Vue.js</span>・<span>JavaScript</span>・<span>REST API</span>・<span>Redis</span>
+            </div>
+          </article>
+
+          <article class="proj" data-key="payment_platform" tabindex="0" role="button" aria-label="Open project detail">
+            <div class="label" data-i18n="workProjects.payment_platform.label">Payment Platform（前職）</div>
+            <h3 data-i18n="workProjects.payment_platform.title">決済機能の改善・保守</h3>
+            <p data-i18n="workProjects.payment_platform.description">
+              不具合調査・修正、性能改善、リファクタリング、オンコール対応まで対応。
+            </p>
+            <div class="meta">
+              <span>Java / Kotlin</span>・<span>Kafka</span>・<span>Observability</span>
+            </div>
+          </article>
+
+          <article class="proj" data-key="test_automation" tabindex="0" role="button" aria-label="Open project detail">
+            <div class="label" data-i18n="workProjects.test_automation.label">QA / Enablement（短期）</div>
+            <h3 data-i18n="workProjects.test_automation.title">航空会社向け 自動化テスト導入支援</h3>
+            <p data-i18n="workProjects.test_automation.description">
+              テスト対象の整理、テンプレート作成、実行・分析、最終報告まで担当。
+            </p>
+            <div class="meta">
+              <span>Test Automation</span>・<span>Requirement</span>・<span>Reporting</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="panel" id="skills" style="--panel-bg:#ddd6fe;" aria-label="Skills">
+      <div class="shape shape-wave" style="top:140px; left:-18px; transform:rotate(8deg);"></div>
+      <div class="shape shape-diag" style="bottom:70px; right:34px; transform:rotate(10deg);"></div>
+
+      <div class="wrap">
+        <div class="section-title"><div class="section-bar"></div><span data-i18n="skills.title">Skills & Certifications</span></div>
+        <p class="sub" data-i18n="skills.subtitle">
+          実務経験のある技術を中心にまとめています。
+        </p>
+
+        <div class="section-stack">
+          <div class="block-title">Skills</div>
+          <div class="grid2">
+          <div class="card">
+            <div style="font-weight:800; margin:0 0 10px;">Backend</div>
+            <div class="pill-row">
+              <span class="pill yellow">Java</span>
+              <span class="pill yellow">Kotlin</span>
+              <span class="pill">Scala</span>
+              <span class="pill alt">Spring Boot</span>
+              <span class="pill">MyBatis</span>
+              <span class="pill">Resilience4j</span>
+              <span class="pill">Feign</span>
+              <span class="pill">JUnit</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="font-weight:800; margin:0 0 10px;">Data / Middleware</div>
+            <div class="pill-row">
+              <span class="pill alt">MySQL</span>
+              <span class="pill">AuroraDB</span>
+              <span class="pill">DynamoDB</span>
+              <span class="pill">Redis</span>
+              <span class="pill yellow">Kafka</span>
+              <span class="pill">ELK</span>
+              <span class="pill alt">SQL</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="font-weight:800; margin:0 0 10px;">Infra / DevOps</div>
+            <div class="pill-row">
+              <span class="pill">Docker</span>
+              <span class="pill yellow">Kubernetes</span>
+              <span class="pill alt">AWS</span>
+              <span class="pill">GCP</span>
+              <span class="pill">ArgoCD</span>
+              <span class="pill">Jenkins</span>
+              <span class="pill alt">GitHub</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="font-weight:800; margin:0 0 10px;">Frontend / Observability</div>
+            <div class="pill-row">
+              <span class="pill yellow">Vue.js</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill alt">npm / yarn</span>
+              <span class="pill">Kibana</span>
+              <span class="pill">Grafana</span>
+              <span class="pill alt">Snowflake</span>
+              <span class="pill">BigQuery</span>
+            </div>
+          </div>
+          </div>
+
+          <div class="block-title">Certifications</div>
+          <div class="grid2">
+            <div class="card">
+              <div style="font-weight:800; margin:0 0 10px;">Tech</div>
+              <div class="pill-row">
+                <span class="pill yellow">Java Silver</span>
+                <span class="pill yellow">Java Gold</span>
+                <span class="pill">AWS SAA</span>
+                <span class="pill alt">基本情報技術者</span>
+                <span class="pill">情報セキュリティマネジメント</span>
+              </div>
+            </div>
+            <div class="card">
+              <div style="font-weight:800; margin:0 0 10px;">Data / Management</div>
+              <div class="pill-row">
+                <span class="pill">PMP</span>
+                <span class="pill alt">Power BI DA</span>
+                <span class="pill">Azure DE</span>
+                <span class="pill">Azure DS</span>
+                <span class="pill alt">Advanced Google Analytics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE (NEW) -->
+    <section class="panel" id="timeline" style="--panel-bg:#fed7aa;" aria-label="Timeline">
+      <div class="shape shape-dot" style="top:130px; left:-28px;"></div>
+      <div class="shape shape-diag" style="bottom:80px; right:30px; transform:rotate(10deg);"></div>
+
+      <div class="wrap">
+        <div class="section-title"><div class="section-bar"></div><span data-i18n="timeline.title">Experience</span></div>
+        <p class="sub" data-i18n="timeline.subtitle">
+          これまでの経歴をご紹介します。
+        </p>
+
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-date">2025.03 – Present</div>
+            <div class="t-card">
+            <div class="t-title" data-i18n="experienceTimeline.job1.title">ウィソフト株式会社 — Full-stackエンジニア（再入社）</div>
+              <div class="t-sub" data-i18n="experienceTimeline.job1.description">
+                Backoffice の開発・保守（ユーザー／加盟店管理、クーポン発行、照会業務の自動化）。
+                官公庁・外部第三者連携の高信頼領域で、要件整理〜設計〜運用まで一人称で対応。
+              </div>
+              <div class="t-tags">
+                <span>Java</span><span>Kotlin</span><span>Spring Boot</span><span>Vue</span><span>AWS/K8s</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-date">2025.01 – 2025.02</div>
+            <div class="t-card">
+            <div class="t-title" data-i18n="experienceTimeline.job2.title">Amifiable株式会社 — MLET導入コンサルタント</div>
+              <div class="t-sub" data-i18n="experienceTimeline.job2.description">
+                大手航空会社向けシステム刷新で自動化テスト導入を支援（スコープ定義〜実行・分析〜報告、運用共有）。
+              </div>
+              <div class="t-tags">
+                <span>Test Automation</span><span>Requirement</span><span>Reporting</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-date">2023.03 – 2024.12</div>
+            <div class="t-card">
+            <div class="t-title" data-i18n="experienceTimeline.job3.title">ウィソフト株式会社 — Backend / Full-stackエンジニア</div>
+              <div class="t-sub" data-i18n="experienceTimeline.job3.description">
+                決済機能の改善・保守に加え、法人向けマーケティングシステムの新規開発、
+                人事系業務システムの設計〜実装〜テストを担当。オンコール対応・改善にも従事。
+              </div>
+              <div class="t-tags">
+                <span>Java</span><span>Kotlin</span><span>Spring Boot</span><span>Kafka</span><span>MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-date">2022.04 – 2022.10</div>
+            <div class="t-card">
+            <div class="t-title" data-i18n="experienceTimeline.job4.title">日本IBMデジタルサービス — 開発</div>
+              <div class="t-sub" data-i18n="experienceTimeline.job4.description">
+                大手メーカーの人事システム移行・単純化プロジェクトで設計／開発／テスト。
+              </div>
+              <div class="t-tags">
+                <span>Java</span><span>MySQL</span><span>Waterfall</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-date">2020.03 – 2021.11</div>
+            <div class="t-card">
+            <div class="t-title" data-i18n="experienceTimeline.edu1.title">シェフィールド大学院 — Marketing Management Practice</div>
+              <div class="t-sub" data-i18n="experienceTimeline.edu1.description">
+                マーケティング・マネジメント領域を専攻。
+              </div>
+              <div class="t-tags">
+                <span>Education</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-date">2015.04 – 2019.03</div>
+            <div class="t-card">
+            <div class="t-title" data-i18n="experienceTimeline.edu2.title">早稲田大学 文化構想学部 — 学士</div>
+              <div class="t-sub" data-i18n="experienceTimeline.edu2.description">
+                文化構想学部にて学士課程を修了。
+              </div>
+              <div class="t-tags">
+                <span>Education</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="t-item">
+            <div class="t-date">2014.01 – 2015.03</div>
+            <div class="t-card">
+            <div class="t-title">メロス日本語学校</div>
+              <div class="t-sub">
+                日本語学習課程を修了。
+              </div>
+              <div class="t-tags">
+                <span>Education</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="panel" id="contact" style="--panel-bg:#fbcfe8;" aria-label="Contact">
+      <div class="shape shape-dot" style="top:120px; right:-30px;"></div>
+      <div class="shape shape-wave" style="bottom:90px; left:40px; transform:rotate(-10deg);"></div>
+
+      <div class="wrap">
+        <div class="section-title"><div class="section-bar"></div><span data-i18n="contact.title">Contact</span></div>
+        <p class="sub" data-i18n="contact.subtitle">
+          ご連絡はメールでお願いします。GitHub は公開できる範囲で更新しています。
+        </p>
+
+        <div class="card">
+          <div class="pill-row" style="margin-bottom:12px;">
+            <span class="pill yellow">Email: <a href="mailto:yamashitapp@gmail.com">yamashitapp@gmail.com</a></span>
+            <span class="pill alt" data-i18n="contact.location">Location: Tokyo</span>
+            <span class="pill" data-i18n="contact.languages">Languages: 日本語 / English / 中文</span>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <a class="btn" href="mailto:yamashitapp@gmail.com" data-i18n="contact.email">メールする</a>
+            <a class="btn btn-outline" href="https://github.com/your-github" target="_blank" rel="noreferrer" data-i18n="contact.github">GitHub を見る</a>
+            <a class="btn btn-outline" href="#home" data-nav data-i18n="contact.top">トップへ戻る</a>
+          </div>
+
+          <div style="margin-top:14px; font-size:12px; color:var(--text-muted);">
+            © <span id="year"></span> Xiaoya Chen
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Dialog -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close" id="closeBtn" aria-label="Close">×</button>
+      <h3 id="modalTitle">詳細</h3>
+      <p class="text" id="modalText"></p>
+      <div class="modal-images" id="modalImages"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox（全屏图片查看器） -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose">×</button>
+      <div class="lightbox-nav prev" id="lightboxPrev">‹</div>
+      <div class="lightbox-nav next" id="lightboxNext">›</div>
+      <img id="lightboxImg" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const snap = document.getElementById("snap");
+    const tabs = Array.from(document.querySelectorAll("[data-nav].tab"));
+    const navLinks = Array.from(document.querySelectorAll("[data-nav]"));
+    const panels = Array.from(document.querySelectorAll("section.panel"));
+    const scrollIndicator = document.getElementById("scrollIndicator");
+
+    // 生成滚动指示器小点
+    panels.forEach((panel, i) => {
+      const dot = document.createElement("div");
+      dot.className = "scroll-dot";
+      if (i === 0) dot.classList.add("active");
+      dot.setAttribute("data-index", i);
+      dot.setAttribute("aria-label", `Go to section ${i + 1}`);
+      dot.addEventListener("click", () => {
+        panels[i].scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      scrollIndicator.appendChild(dot);
+    });
+    const scrollDots = Array.from(scrollIndicator.querySelectorAll(".scroll-dot"));
+
+    // ===== 简单的普通滚动，只保留指示器功能 =====
+    
+    // 更新指示器高亮
+    function updateIndicator(){
+      const y = snap.scrollTop + window.innerHeight / 2;
+      let currentIndex = 0;
+      let minDist = Infinity;
+      
+      panels.forEach((panel, i) => {
+        const panelMid = panel.offsetTop + panel.offsetHeight / 2;
+        const dist = Math.abs(y - panelMid);
+        if (dist < minDist) {
+          minDist = dist;
+          currentIndex = i;
+        }
+      });
+      
+      scrollDots.forEach((d, i) => {
+        d.classList.toggle("active", i === currentIndex);
+      });
+    }
+
+    // 监听滚动，更新指示器
+    snap.addEventListener("scroll", updateIndicator);
+    
+    // 初始化
+    updateIndicator();
+
+    // 导航点击：简单滚动到对应section
+    function scrollToHash(hash) {
+      const id = (hash || "").replace("#", "");
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    navLinks.forEach(a => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href") || "";
+        if (!href.startsWith("#")) return;
+        e.preventDefault();
+        history.replaceState(null, "", href);
+        scrollToHash(href);
+      });
+    });
+
+    // 向下箭头
+    document.getElementById("goNext").addEventListener("click", () => {
+      const currentY = snap.scrollTop;
+      const nextPanel = panels.find(p => p.offsetTop > currentY + 100);
+      if (nextPanel) {
+        nextPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+
+    // Tab 高亮跟随滚动
+    const tabById = new Map(tabs.map(t => [t.getAttribute("href").slice(1), t]));
+    
+    function updateTabHighlight(){
+      const y = snap.scrollTop + 200; // 偏移一点，提前高亮
+      let activeId = panels[0].id;
+      
+      for (let i = panels.length - 1; i >= 0; i--) {
+        if (panels[i].offsetTop <= y) {
+          activeId = panels[i].id;
+          break;
+        }
+      }
+      
+      tabs.forEach(t => t.classList.remove("active"));
+      const activeTab = tabById.get(activeId);
+      if (activeTab) activeTab.classList.add("active");
+    }
+    
+    snap.addEventListener("scroll", updateTabHighlight);
+    updateTabHighlight();
+
+    // 页面加载时如果有 hash，滚动到对应位置
+    window.addEventListener("load", () => {
+      if (location.hash) scrollToHash(location.hash);
+    });
+
+    // ===== Project dialog =====
+    const overlay = document.getElementById("overlay");
+    const closeBtn = document.getElementById("closeBtn");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const modalImages = document.getElementById("modalImages");
+
+    const modalDetails = {
+      ja: {
+        bo_inquiry: {
+          title: "ユーザー／加盟店照会業務の自動化",
+          text:
+            "官公庁・外部第三者との連携が前提となる照会業務を、紙運用からシステム化するプロジェクトを担当しました。\n" +
+            "仕様の誤りが対外影響につながるため、業務フローと例外ケースを整理し、PM・関係チームと合意形成を行った上で設計・実装。\n" +
+            "新規サービス立ち上げ〜本番リリース、運用まで一人称で対応しています。"
+        },
+        bo_ops: {
+          title: "社内業務支援の機能追加・UI改善",
+          text:
+            "Backoffice の日常業務（ユーザー／加盟店管理、クーポン発行、一括更新）を支える機能を継続改善しています。\n" +
+            "誤操作防止や権限設計を意識し、Vue.js での画面改善と API 連携まで含めて実装しています。"
+        },
+        payment_platform: {
+          title: "決済機能の改善・保守",
+          text:
+            "決済関連プロダクトで、不具合調査・修正、性能改善、リファクタリングを担当しました。\n" +
+            "オンコール対応を通じて障害の一次切り分け・復旧にも対応し、運用上の課題を継続的に改善しました。"
+        },
+        test_automation: {
+          title: "航空会社向け 自動化テスト導入支援",
+          text:
+            "大手航空会社のシステム刷新プロジェクトで、自社の自動化テストツール導入を支援しました。\n" +
+            "自動化対象の定義、テンプレート作成、テスト実行・分析、最終報告まで担当し、運用ノウハウの共有も行いました。"
+        },
+        pet: {
+          title: "ニャンワン日記（ペット記録アプリ）",
+          text:
+            "大切な家族の毛孩子との毎日を、かわいく・簡単に記録できる iOS アプリです。\n\n" +
+            "【主な機能】\n" +
+            "・スマートリマインダー：お世話の時間を逃さない\n" +
+            "・AI アシスタント：24時間いつでも飼育相談\n" +
+            "・健康管理：体重・通院・投薬記録を一括管理\n\n" +
+            "飼い主さんの暮らしにそっと寄り添い、ペットとの思い出を一緒に紡いでいくアプリです。"
+        },
+        mbti: {
+          title: "MBTI 旅行プランナー",
+          text:
+            "性格診断（MBTI）に基づいて、あなたにぴったりな旅程を提案する iOS アプリです。\n\n" +
+            "【主な機能】\n" +
+            "・MBTI に基づいた行程の自動提案\n" +
+            "・気になる場所をカテゴリーごとに保存\n" +
+            "・旅行メモ・評価・タグで思い出を整理\n\n" +
+            "自分らしい旅のスタイルを見つけて、より充実した旅行体験をサポートします。"
+        }
+      },
+      en: {
+        bo_inquiry: {
+          title: "User/Merchant Inquiry Automation",
+          text:
+            "Led digitization of inquiry operations involving government agencies and third parties, transitioning from paper-based processes to a systemized solution.\n" +
+            "Organized business flows and exception cases to prevent specification errors from causing external impact, then designed and implemented after reaching consensus with PM and related teams.\n" +
+            "Responsible end-to-end from new service launch through production release and ongoing operations."
+        },
+        bo_ops: {
+          title: "Feature Additions & UI Improvements for Internal Operations",
+          text:
+            "Continuously improving features supporting Backoffice daily operations (user/merchant management, coupon issuance, bulk updates).\n" +
+            "Implementing screen improvements with Vue.js and API integration, with focus on preventing operational errors and proper permission design."
+        },
+        payment_platform: {
+          title: "Payment Feature Improvements & Maintenance",
+          text:
+            "Handled bug investigation/fixes, performance improvements, and refactoring for payment-related products.\n" +
+            "Responded to initial incident triage and recovery through on-call duties, continuously improving operational challenges."
+        },
+        test_automation: {
+          title: "Test Automation Implementation Support for Airline",
+          text:
+            "Supported implementation of proprietary test automation tools for a major airline's system renovation project.\n" +
+            "Handled everything from defining automation scope, creating templates, test execution/analysis, to final reporting and operational knowledge sharing."
+        },
+        pet: {
+          title: "Fluffy Pet Diary (Pet Record App)",
+          text:
+            "An iOS app to easily and adorably record everyday moments with your beloved pet family.\n\n" +
+            "【Key Features】\n" +
+            "・Smart Reminders: Never miss care time\n" +
+            "・AI Assistant: 24/7 pet care consultation\n" +
+            "・Health Management: Track weight, vet visits, and medication\n\n" +
+            "An app that gently accompanies pet owners' daily lives and helps create memories with pets."
+        },
+        mbti: {
+          title: "MBTI Travel Planner",
+          text:
+            "An iOS app that suggests personalized travel itineraries based on your MBTI personality type.\n\n" +
+            "【Key Features】\n" +
+            "・AI-generated itineraries based on MBTI\n" +
+            "・Save favorite places by category\n" +
+            "・Organize memories with notes, ratings, and tags\n\n" +
+            "Find your personal travel style and enhance your travel experience."
+        }
+      }
+    };
+    
+    const projectImages = {
+      pet: [
+        "./assets/pet/homepage.png",
+        "./assets/pet/detailai.png",
+        "./assets/pet/remindercard.png",
+        "./assets/pet/centerview.png",
+        "./assets/pet/searchview.png",
+        "./assets/pet/pdf.png"
+      ],
+      mbti: [
+        "./assets/mbti/cover.jpg",
+        "./assets/mbti/select.jpg",
+        "./assets/mbti/favor.jpg",
+        "./assets/mbti/explore.jpg",
+        "./assets/mbti/extra.jpg",
+        "./assets/mbti/jtype.jpg",
+        "./assets/mbti/ptype2.jpg"
+      ]
+    };
+
+    function openModal(key){
+      const d = modalDetails[currentLang]?.[key];
+      if (!d) return;
+      modalTitle.textContent = d.title;
+      modalText.textContent = d.text;
+      
+      // 清空并填充图片
+      modalImages.innerHTML = "";
+      const images = projectImages[key];
+      if (images && images.length > 0) {
+        images.forEach((src, index) => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = d.title;
+          img.dataset.index = index;
+          img.dataset.images = JSON.stringify(images);
+          // 点击图片打开 lightbox
+          img.addEventListener("click", () => openLightbox(images, index));
+          modalImages.appendChild(img);
+        });
+      }
+      
+      overlay.style.display = "block";
+      overlay.setAttribute("aria-hidden", "false");
+    }
+    function closeModal(){
+      overlay.style.display = "none";
+      overlay.setAttribute("aria-hidden", "true");
+    }
+
+    // ===== Lightbox（全屏图片查看器） =====
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const lightboxPrev = document.getElementById("lightboxPrev");
+    const lightboxNext = document.getElementById("lightboxNext");
+    
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function openLightbox(images, index){
+      currentImages = images;
+      currentIndex = index;
+      lightboxImg.src = currentImages[currentIndex];
+      lightbox.classList.add("active");
+      updateNavButtons();
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("active");
+    }
+
+    function showPrevImage(){
+      if (currentIndex > 0) {
+        currentIndex--;
+        lightboxImg.src = currentImages[currentIndex];
+        updateNavButtons();
+      }
+    }
+
+    function showNextImage(){
+      if (currentIndex < currentImages.length - 1) {
+        currentIndex++;
+        lightboxImg.src = currentImages[currentIndex];
+        updateNavButtons();
+      }
+    }
+
+    function updateNavButtons(){
+      // 第一张图片时隐藏"上一张"按钮
+      lightboxPrev.style.opacity = currentIndex === 0 ? "0.3" : "1";
+      lightboxPrev.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
+      // 最后一张图片时隐藏"下一张"按钮
+      lightboxNext.style.opacity = currentIndex === currentImages.length - 1 ? "0.3" : "1";
+      lightboxNext.style.pointerEvents = currentIndex === currentImages.length - 1 ? "none" : "auto";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightboxPrev.addEventListener("click", showPrevImage);
+    lightboxNext.addEventListener("click", showNextImage);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    
+    // 键盘导航
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.classList.contains("active")) {
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") showPrevImage();
+        if (e.key === "ArrowRight") showNextImage();
+      }
+    });
+
+    // Work Projects 监听
+    document.querySelectorAll(".proj").forEach(card => {
+      const key = card.getAttribute("data-key");
+      card.addEventListener("click", () => openModal(key));
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal(key);
+        }
+      });
+    });
+
+    // Personal Projects 监听
+    document.querySelectorAll(".app-card").forEach(card => {
+      const key = card.getAttribute("data-key");
+      if (key) {
+        card.addEventListener("click", () => openModal(key));
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openModal(key);
+          }
+        });
+      }
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+    document.addEventListener("keydown", (e) => { 
+      if (e.key === "Escape" && !lightbox.classList.contains("active")) closeModal(); 
+    });
+
+    // ===== 多语言切换系统 =====
+    const translations = {
+      ja: {
+        nav: {
+          home: "トップ",
+          work: "ポートフォリオ",
+          skills: "スキル",
+          timeline: "経歴",
+          contact: "連絡先"
+        },
+        home: {
+          intro: "2014年に日本へ渡り、早稲田大学で学生生活を送りました。<br>卒業後はイギリスの大学院に進学し、視野と好奇心を広げる日々を経験。<br><br>2022年から IT エンジニアとしてキャリアをスタート。<br>現在は Java / Kotlin を中心に Web システムを開発しています。<br>バックエンドがメインですが、Vue.js を使ったフロントエンド開発も好きです。<br><br>コードを書いていない時間は、海外旅行の計画を立てたり、週末に山へ登って自然の中でリフレッシュしたり。新しい景色に出会うことが、ものづくりの原動力になっています。<br>",
+          scroll: "下にスクロール"
+        },
+        work: {
+          title: "Projects",
+          subtitle: "個人制作と実務で担当した内容をまとめています（実務はクリックで詳細）。",
+          personal: "Personal Projects",
+          workProjects: "Work Projects"
+        },
+        projects: {
+          pet: {
+            title: "もふもふペットダイアリー（ペット記録アプリ）IOS(JPN/ENG/CHN)",
+            subtitle: "大切なペット家族との毎日を、かわいく・簡単に記録できる iOS アプリです。",
+            tag1: "健康管理",
+            tag2: "AI相談",
+            tag3: "リマインダー",
+            tag4: "成長記録",
+            feature1: "スマートリマインダー：お世話の時間を逃さない",
+            feature2: "AI アシスタント：24時間いつでも飼育相談",
+            feature3: "健康管理：体重・通院・投薬記録を一括管理"
+          },
+          mbti: {
+            title: "性格图旅（IOS CHN Only）",
+            subtitle: "性格診断（MBTI）に基づいて、あなたにぴったりな旅程を提案する iOS アプリです。",
+            tag1: "性格診断",
+            tag2: "プラン自動生成",
+            tag3: "お気に入り管理",
+            tag4: "旅行記録",
+            feature1: "MBTI に基づいた行程の自動提案",
+            feature2: "気になる場所をカテゴリーごとに保存",
+            feature3: "旅行メモ・評価・タグで思い出を整理"
+          }
+        },
+        workProjects: {
+          bo_inquiry: {
+            label: "Backoffice / Automation（現職）",
+            title: "ユーザー／加盟店照会業務の自動化",
+            description: "官公庁・外部第三者連携が前提の高信頼領域で、紙運用の照会業務をシステム化。"
+          },
+          bo_ops: {
+            label: "Backoffice / Operations（現職）",
+            title: "社内業務支援の機能追加・UI改善",
+            description: "ユーザー/加盟店情報管理、クーポン発行、一括更新などの改善を継続。"
+          },
+          payment_platform: {
+            label: "Payment Platform（前職）",
+            title: "決済機能の改善・保守",
+            description: "不具合調査・修正、性能改善、リファクタリング、オンコール対応まで対応。"
+          },
+          test_automation: {
+            label: "QA / Enablement（短期）",
+            title: "航空会社向け 自動化テスト導入支援",
+            description: "テスト対象の整理、テンプレート作成、実行・分析、最終報告まで担当。"
+          }
+        },
+        experienceTimeline: {
+          job1: {
+            title: "ウィソフト株式会社 — Full-stackエンジニア（再入社）",
+            description: "Backoffice の開発・保守（ユーザー／加盟店管理、クーポン発行、照会業務の自動化）。官公庁・外部第三者連携の高信頼領域で、要件整理〜設計〜運用まで一人称で対応。"
+          },
+          job2: {
+            title: "Amifiable株式会社 — MLET導入コンサルタント",
+            description: "大手航空会社向けシステム刷新で自動化テスト導入を支援（スコープ定義〜実行・分析〜報告、運用共有）。"
+          },
+          job3: {
+            title: "ウィソフト株式会社 — Backend / Full-stackエンジニア",
+            description: "決済機能の改善・保守に加え、法人向けマーケティングシステムの新規開発、人事系業務システムの設計〜実装〜テストを担当。オンコール対応・改善にも従事。"
+          },
+          job4: {
+            title: "日本IBMデジタルサービス — 開発",
+            description: "大手メーカーの人事システム移行・単純化プロジェクトで設計／開発／テスト。"
+          },
+          edu1: {
+            title: "シェフィールド大学院 — Marketing Management Practice",
+            description: "マーケティング・マネジメント領域を専攻。"
+          },
+          edu2: {
+            title: "早稲田大学 文化構想学部 — 学士",
+            description: "文化構想学部にて学士課程を修了。"
+          }
+        },
+        skills: {
+          title: "Skills & Certifications",
+          subtitle: "実務経験のある技術を中心にまとめています。"
+        },
+        timeline: {
+          title: "Experience",
+          subtitle: "これまでの経歴をご紹介します。"
+        },
+        contact: {
+          title: "Contact",
+          subtitle: "ご連絡はメールでお願いします。GitHub は公開できる範囲で更新しています。",
+          email: "メールする",
+          github: "GitHub を見る",
+          top: "トップへ戻る",
+          location: "Location: Tokyo",
+          languages: "Languages: 日本語 / English / 中文"
+        }
+      },
+      en: {
+        nav: {
+          home: "Home",
+          work: "Portfolio",
+          skills: "Skills",
+          timeline: "Experience",
+          contact: "Contact"
+        },
+        home: {
+          intro: "I came to Japan in 2014 and spent my student life at Waseda University.<br>After graduation, I pursued a master's degree in the UK, broadening my horizons and curiosity.<br><br>In 2022, I started my career as an IT engineer.<br>Currently, I develop web systems mainly using Java / Kotlin.<br>While backend is my forte, I also enjoy frontend development with Vue.js.<br><br>When I'm not coding, I plan overseas trips or hike mountains on weekends to refresh in nature. Discovering new landscapes fuels my passion for creation.<br>",
+          scroll: "Scroll Down"
+        },
+        work: {
+          title: "Projects",
+          subtitle: "Personal projects and professional work experience (click for work details).",
+          personal: "Personal Projects",
+          workProjects: "Work Projects"
+        },
+        projects: {
+          pet: {
+            title: "Fluffy Pet Diary (Pet Record App) iOS (JPN/ENG/CHN)",
+            subtitle: "An iOS app to easily and adorably record everyday moments with your beloved pet family.",
+            tag1: "Health Management",
+            tag2: "AI Consultation",
+            tag3: "Reminders",
+            tag4: "Growth Records",
+            feature1: "Smart Reminders: Never miss care time",
+            feature2: "AI Assistant: 24/7 pet care consultation",
+            feature3: "Health Management: Track weight, vet visits, and medication"
+          },
+          mbti: {
+            title: "Personality Travel (iOS CHN Only)",
+            subtitle: "An iOS app that suggests personalized travel itineraries based on your MBTI personality type.",
+            tag1: "Personality Test",
+            tag2: "Auto Itinerary",
+            tag3: "Favorites",
+            tag4: "Travel Journal",
+            feature1: "AI-generated itineraries based on MBTI",
+            feature2: "Save favorite places by category",
+            feature3: "Organize memories with notes, ratings, and tags"
+          }
+        },
+        workProjects: {
+          bo_inquiry: {
+            label: "Backoffice / Automation (Current)",
+            title: "User/Merchant Inquiry Automation",
+            description: "Digitized paper-based inquiry operations in a high-trust domain involving government agencies and third parties."
+          },
+          bo_ops: {
+            label: "Backoffice / Operations (Current)",
+            title: "Feature Additions & UI Improvements for Internal Operations",
+            description: "Continuous improvements for user/merchant management, coupon issuance, and bulk updates."
+          },
+          payment_platform: {
+            label: "Payment Platform (Previous)",
+            title: "Payment Feature Improvements & Maintenance",
+            description: "Bug investigation/fixes, performance improvements, refactoring, and on-call support."
+          },
+          test_automation: {
+            label: "QA / Enablement (Short-term)",
+            title: "Test Automation Implementation for Airline",
+            description: "Supported test automation for a major airline's system renovation from scope definition to execution, analysis, and reporting."
+          }
+        },
+        experienceTimeline: {
+          job1: {
+            title: "WeSoft Inc. — Full-stack Engineer (Rejoined)",
+            description: "Backoffice development and maintenance (user/merchant management, coupon issuance, inquiry automation). End-to-end ownership from requirements to design and operations in high-trust domains involving government agencies."
+          },
+          job2: {
+            title: "Amifiable Inc. — MLET Implementation Consultant",
+            description: "Supported test automation implementation for a major airline's system renovation (scope definition, execution, analysis, reporting, and operational knowledge sharing)."
+          },
+          job3: {
+            title: "WeSoft Inc. — Backend / Full-stack Engineer",
+            description: "Payment feature improvements/maintenance, new B2B marketing system development, and HR system design/implementation/testing. Also handled on-call duties and continuous improvements."
+          },
+          job4: {
+            title: "IBM Digital Service Japan — Developer",
+            description: "Designed, developed, and tested HR system migration and simplification project for a major manufacturer."
+          },
+          edu1: {
+            title: "University of Sheffield — Marketing Management Practice",
+            description: "Specialized in Marketing Management."
+          },
+          edu2: {
+            title: "Waseda University — Bachelor of Arts",
+            description: "Completed bachelor's degree in School of Culture, Media and Society."
+          }
+        },
+        skills: {
+          title: "Skills & Certifications",
+          subtitle: "Technologies and certifications from my professional experience."
+        },
+        timeline: {
+          title: "Experience",
+          subtitle: "A summary of my career journey."
+        },
+        contact: {
+          title: "Contact",
+          subtitle: "Please feel free to reach out via email. My GitHub is updated with projects I can share publicly.",
+          email: "Send Email",
+          github: "View GitHub",
+          top: "Back to Top",
+          location: "Location: Tokyo",
+          languages: "Languages: Japanese / English / Chinese"
+        }
+      }
+    };
+
+    let currentLang = localStorage.getItem('language') || 'ja';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('language', lang);
+      
+      // Update all elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const keys = key.split('.');
+        let value = translations[lang];
+        
+        keys.forEach(k => {
+          value = value?.[k];
+        });
+        
+        if (value) {
+          el.innerHTML = value;
+        }
+      });
+      
+      // Update language toggle buttons
+      document.querySelectorAll('.lang-option').forEach(opt => {
+        opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+      });
+    }
+
+    // Initialize language
+    setLanguage(currentLang);
+
+    // Language toggle click handler
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const lang = opt.getAttribute('data-lang');
+        setLanguage(lang);
+      });
+    });
+
+    // ===== 防复制保护 =====
+    
+    // 1. 禁用右键菜单
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // 2. 禁用复制快捷键（Ctrl+C / Cmd+C）
+    document.addEventListener("keydown", (e) => {
+      // 禁用 Ctrl+C / Cmd+C
+      if ((e.ctrlKey || e.metaKey) && e.key === "c") {
+        e.preventDefault();
+        return false;
+      }
+      // 禁用 Ctrl+U / Cmd+U (查看源代码)
+      if ((e.ctrlKey || e.metaKey) && e.key === "u") {
+        e.preventDefault();
+        return false;
+      }
+      // 禁用 F12 (开发者工具)
+      if (e.key === "F12") {
+        e.preventDefault();
+        return false;
+      }
+      // 禁用 Ctrl+Shift+I / Cmd+Option+I (开发者工具)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "I") {
+        e.preventDefault();
+        return false;
+      }
+      // 禁用 Ctrl+Shift+J / Cmd+Option+J (控制台)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "J") {
+        e.preventDefault();
+        return false;
+      }
+      // 禁用 Ctrl+Shift+C / Cmd+Option+C (检查元素)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === "C") {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // 3. 禁用复制事件
+    document.addEventListener("copy", (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // 4. 禁用剪切事件
+    document.addEventListener("cut", (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // 5. 禁用选择事件（额外保护）
+    document.addEventListener("selectstart", (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // 6. 禁用拖拽选择
+    document.addEventListener("dragstart", (e) => {
+      e.preventDefault();
+      return false;
+    });
+  </script>
+</body>
+</html>
