@@ -681,6 +681,24 @@
       opacity:1;
     }
     
+    .app-store-wrap{
+      margin:12px 0 0;
+      padding:0;
+    }
+    .app-store-link{
+      display:inline-block;
+      font-size:12px;
+      font-weight:600;
+      color:var(--black);
+      text-decoration:underline;
+      padding:4px 0;
+      cursor:pointer;
+    }
+    .app-store-link:hover{
+      text-decoration:none;
+      opacity:0.8;
+    }
+    
     .app-title{
       font-size:15px;
       font-weight:700;
@@ -1593,10 +1611,11 @@
               <li data-i18n="projects.pet.feature2">AI アシスタント：24時間いつでも飼育相談</li>
               <li data-i18n="projects.pet.feature3">健康管理：体重・通院・投薬記録を一括管理</li>
             </ul>
+            <p class="app-store-wrap"><a href="https://apps.apple.com/ec/app/%E5%96%B5%E6%B1%AA%E6%97%A5%E8%AE%B0-%E7%A7%91%E5%AD%A6%E8%AE%B0%E5%BD%95%E5%AE%A0%E7%89%A9%E6%97%A5%E5%B8%B8%E6%88%90%E9%95%BF/id6742126030" target="_blank" rel="noopener noreferrer" class="app-store-link" data-i18n="projects.pet.appStore" onclick="event.stopPropagation()">App Store で見る</a></p>
           </div>
 
           <div class="app-card" data-key="mbti">
-            <h3 class="app-title" data-i18n="projects.mbti.title">性格旅图</h3>
+            <h3 class="app-title" data-i18n="projects.mbti.title">性格图旅</h3>
             <p class="app-sub" data-i18n="projects.mbti.subtitle">性格診断（MBTI）に基づいて、あなたにぴったりな旅程を提案する iOS アプリです。</p>
             <div class="app-tags">
               <span data-i18n="projects.mbti.tag1">性格診断</span>
@@ -1614,6 +1633,7 @@
               <li data-i18n="projects.mbti.feature2">気になる場所をカテゴリーごとに保存</li>
               <li data-i18n="projects.mbti.feature3">旅行メモ・評価・タグで思い出を整理</li>
             </ul>
+            <p class="app-store-wrap"><a href="https://apps.apple.com/jp/app/%E6%80%A7%E6%A0%BC%E6%97%A5%E5%9B%BE-%E6%97%85%E6%B8%B8%E8%A1%8C%E7%A8%8B%E8%A7%84%E5%88%92-%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5%E5%88%9B%E5%BB%BA%E5%AF%BC%E5%87%BA%E5%8A%A9%E6%89%8B/id6743542763" target="_blank" rel="noopener noreferrer" class="app-store-link" data-i18n="projects.mbti.appStore" onclick="event.stopPropagation()">App Store で見る</a></p>
           </div>
 
           <div class="app-card" data-key="prompt">
@@ -2067,7 +2087,8 @@
             tag4: "成長記録",
             feature1: "スマートリマインダー：お世話の時間を逃さない",
             feature2: "AI アシスタント：24時間いつでも飼育相談",
-            feature3: "健康管理：体重・通院・投薬記録を一括管理"
+            feature3: "健康管理：体重・通院・投薬記録を一括管理",
+            appStore: "App Store で見る"
           },
           mbti: {
             title: "性格图旅",
@@ -2078,7 +2099,8 @@
             tag4: "旅行記録",
             feature1: "MBTI に基づいた行程の自動提案",
             feature2: "気になる場所をカテゴリーごとに保存",
-            feature3: "旅行メモ・評価・タグで思い出を整理"
+            feature3: "旅行メモ・評価・タグで思い出を整理",
+            appStore: "App Store で見る"
           },
           prompt: {
             title: "Prompt Debug",
@@ -2201,7 +2223,8 @@
             tag4: "GROWTH",
             feature1: "Smart Reminders: Never miss care time",
             feature2: "AI Assistant: 24/7 pet care consultation",
-            feature3: "Health Management: Track weight, vet visits, medication"
+            feature3: "Health Management: Track weight, vet visits, medication",
+            appStore: "View on App Store"
           },
           mbti: {
             title: "PERSONALITY TRAVEL",
@@ -2212,7 +2235,8 @@
             tag4: "JOURNAL",
             feature1: "AI-generated itineraries based on MBTI",
             feature2: "Save favorite places by category",
-            feature3: "Organize memories with notes, ratings, tags"
+            feature3: "Organize memories with notes, ratings, tags",
+            appStore: "View on App Store"
           },
           prompt: {
             title: "Prompt Debug",
