@@ -1141,6 +1141,26 @@
       }
     }
     
+    /* Prompt 项目图片点开放大 3 倍 */
+    .lightbox.prompt-enlarge .lightbox-content{
+      max-width:75%;
+    }
+    @media (max-width:1024px){
+      .lightbox.prompt-enlarge .lightbox-content{
+        max-width:95%;
+      }
+    }
+    @media (max-width:768px){
+      .lightbox.prompt-enlarge .lightbox-content{
+        max-width:95%;
+      }
+    }
+    @media (max-width:480px){
+      .lightbox.prompt-enlarge .lightbox-content{
+        max-width:95%;
+      }
+    }
+    
     .lightbox-content img{
       width:100%;
       height:auto;
@@ -1314,6 +1334,7 @@
             </div>
             
             <div class="hero-links">
+              <a class="btn btn-primary" href="https://github.com/xiaoyachen0902" target="_blank" rel="noreferrer">GitHub</a>
               <a class="btn btn-outline" href="mailto:yamashitapp@gmail.com">Email</a>
             </div>
           </div>
@@ -1388,6 +1409,27 @@
               <li data-i18n="projects.mbti.feature3">旅行メモ・評価・タグで思い出を整理</li>
             </ul>
           </div>
+
+          <div class="app-card" data-key="prompt">
+            <h3 class="app-title" data-i18n="projects.prompt.title">Prompt Debug</h3>
+            <p class="app-sub" data-i18n="projects.prompt.subtitle">Agent・プロンプトのデバッグ用ラボ。フロー編集・マルチモデル・実行ログでプロンプトを試行錯誤できる Web アプリです。</p>
+            <div class="app-tags">
+              <span data-i18n="projects.prompt.tag1">プロンプト編集</span>
+              <span data-i18n="projects.prompt.tag2">フロー</span>
+              <span data-i18n="projects.prompt.tag3">マルチモデル</span>
+              <span data-i18n="projects.prompt.tag4">実行デバッグ</span>
+            </div>
+            <div class="app-media">
+              <img src="./assets/prompt/Screenshot%202026-02-08%20at%2013.29.21.png" alt="Prompt Debug">
+              <img src="./assets/prompt/Screenshot%202026-02-08%20at%2013.42.49.png" alt="フロー編集">
+              <img src="./assets/prompt/Screenshot%202026-02-08%20at%2013.44.04.png" alt="実行ログ">
+            </div>
+            <ul class="app-list">
+              <li data-i18n="projects.prompt.feature1">フローエディタ：ステップをノードでつなぎ、分岐・条件付き実行を可視化</li>
+              <li data-i18n="projects.prompt.feature2">マルチモデル対応：複数 LLM を切り替えて同一プロンプトを比較</li>
+              <li data-i18n="projects.prompt.feature3">実行ログ：入力・出力・トークン数を記録し、プロンプト改善に活用</li>
+            </ul>
+          </div>
         </div>
 
         <div class="block-title" data-i18n="work.workProjects">Work Projects</div>
@@ -1433,6 +1475,17 @@
             </p>
             <div class="meta">
               <span>Test Automation</span>・<span>Requirement</span>・<span>Reporting</span>
+            </div>
+          </article>
+
+          <article class="proj" data-key="prompt_debug" tabindex="0" role="button">
+            <div class="label" data-i18n="workProjects.prompt_debug.label">SIDE / TOOL</div>
+            <h3 data-i18n="workProjects.prompt_debug.title">Prompt Debug（Agent・プロンプト调试平台）</h3>
+            <p data-i18n="workProjects.prompt_debug.description">
+              エンジニア向けのプロンプト・Agent デバッグ用 Web ツール。フロー編集・マルチモデル・実行ログでプロンプトの試行錯誤を効率化。
+            </p>
+            <div class="meta">
+              <span>React</span>・<span>TypeScript</span>・<span>Fastify</span>・<span>Prisma</span>・<span>MySQL</span>
             </div>
           </article>
         </div>
@@ -1646,6 +1699,7 @@
 
           <div class="contact-links">
             <a class="btn btn-primary" href="mailto:yamashitapp@gmail.com" data-i18n="contact.email">メールする</a>
+            <a class="btn btn-outline" href="https://github.com/xiaoyachen0902" target="_blank" rel="noreferrer" data-i18n="contact.github">GitHub を見る</a>
             <a class="btn btn-outline" href="#home" data-nav data-i18n="contact.top">トップへ戻る</a>
           </div>
 
@@ -1799,6 +1853,17 @@
             feature1: "MBTI に基づいた行程の自動提案",
             feature2: "気になる場所をカテゴリーごとに保存",
             feature3: "旅行メモ・評価・タグで思い出を整理"
+          },
+          prompt: {
+            title: "Prompt Debug",
+            subtitle: "Agent・プロンプトのデバッグ用ラボ。フロー編集・マルチモデル・実行ログでプロンプトを試行錯誤できる Web アプリです。",
+            tag1: "プロンプト編集",
+            tag2: "フロー",
+            tag3: "マルチモデル",
+            tag4: "実行デバッグ",
+            feature1: "フローエディタ：ステップをノードでつなぎ、分岐・条件付き実行を可視化",
+            feature2: "マルチモデル対応：複数 LLM を切り替えて同一プロンプトを比較",
+            feature3: "実行ログ：入力・出力・トークン数を記録し、プロンプト改善に活用"
           }
         },
         workProjects: {
@@ -1821,6 +1886,11 @@
             label: "QA / Enablement（短期）",
             title: "航空会社向け 自動化テスト導入支援",
             description: "テスト対象の整理、テンプレート作成、実行・分析、最終報告まで担当。"
+          },
+          prompt_debug: {
+            label: "SIDE / TOOL",
+            title: "Prompt Debug（Agent・プロンプト调试平台）",
+            description: "エンジニア向けのプロンプト・Agent デバッグ用 Web ツール。フロー編集・マルチモデル・実行ログでプロンプトの試行錯誤を効率化。"
           }
         },
         experienceTimeline: {
@@ -1906,6 +1976,17 @@
             feature1: "AI-generated itineraries based on MBTI",
             feature2: "Save favorite places by category",
             feature3: "Organize memories with notes, ratings, and tags"
+          },
+          prompt: {
+            title: "Prompt Debug",
+            subtitle: "A lab for debugging Agents and prompts. Web app to iterate on prompts with flow editing, multi-model support, and execution logs.",
+            tag1: "PROMPT EDIT",
+            tag2: "FLOW",
+            tag3: "MULTI-MODEL",
+            tag4: "EXEC DEBUG",
+            feature1: "Flow editor: Connect steps as nodes, visualize branches and conditional execution",
+            feature2: "Multi-model: Switch between LLMs to compare the same prompt",
+            feature3: "Execution log: Record input, output, token count for prompt improvement"
           }
         },
         workProjects: {
@@ -1928,6 +2009,11 @@
             label: "QA / Enablement (Short-term)",
             title: "Test Automation Implementation for Airline",
             description: "Supported test automation for a major airline's system renovation from scope definition to execution, analysis, and reporting."
+          },
+          prompt_debug: {
+            label: "SIDE / TOOL",
+            title: "Prompt Debug (Agent・Prompt Debugging Platform)",
+            description: "Web tool for engineers to debug prompts and Agents. Flow editing, multi-model, and execution logs to streamline prompt iteration."
           }
         },
         experienceTimeline: {
@@ -2063,6 +2149,26 @@
             "・気になる場所をカテゴリーごとに保存\n" +
             "・旅行メモ・評価・タグで思い出を整理\n\n" +
             "自分らしい旅のスタイルを見つけて、より充実した旅行体験をサポートします。"
+        },
+        prompt: {
+          title: "Prompt Debug",
+          text:
+            "Agent・プロンプトのデバッグ用ラボ。フロー編集・マルチモデル・実行ログでプロンプトを試行錯誤できる Web アプリです。\n\n" +
+            "【主な機能】\n" +
+            "・フローエディタ：ステップをノードでつなぎ、分岐・条件付き実行を可視化\n" +
+            "・マルチモデル対応：複数 LLM を切り替えて同一プロンプトを比較\n" +
+            "・実行ログ：入力・出力・トークン数を記録し、プロンプト改善に活用\n\n" +
+            "技術スタック：React / TypeScript / Fastify / Prisma / MySQL"
+        },
+        prompt_debug: {
+          title: "Prompt Debug（Agent・プロンプト调试平台）",
+          text:
+            "エンジニア向けのプロンプト・Agent デバッグ用 Web ツール。フロー編集・マルチモデル・実行ログでプロンプトの試行錯誤を効率化。\n\n" +
+            "【主な機能】\n" +
+            "・フローエディタ：ステップをノードでつなぎ、分岐・条件付き実行を可視化\n" +
+            "・マルチモデル対応：複数 LLM を切り替えて同一プロンプトを比較\n" +
+            "・実行ログ：入力・出力・トークン数を記録\n\n" +
+            "技術スタック：React / TypeScript / Fastify / Prisma / MySQL"
         }
       },
       en: {
@@ -2110,6 +2216,26 @@
             "・Save favorite places by category\n" +
             "・Organize memories with notes, ratings, and tags\n\n" +
             "Find your personal travel style and enhance your travel experience."
+        },
+        prompt: {
+          title: "Prompt Debug",
+          text:
+            "A lab for debugging Agents and prompts. Web app to iterate on prompts with flow editing, multi-model support, and execution logs.\n\n" +
+            "【Key Features】\n" +
+            "・Flow editor: Connect steps as nodes, visualize branches and conditional execution\n" +
+            "・Multi-model: Switch between LLMs to compare the same prompt\n" +
+            "・Execution log: Record input, output, token count for prompt improvement\n\n" +
+            "Tech stack: React / TypeScript / Fastify / Prisma / MySQL"
+        },
+        prompt_debug: {
+          title: "Prompt Debug (Agent・Prompt Debugging Platform)",
+          text:
+            "Web tool for engineers to debug prompts and Agents. Flow editing, multi-model, and execution logs to streamline prompt iteration.\n\n" +
+            "【Key Features】\n" +
+            "・Flow editor: Connect steps as nodes, visualize branches and conditional execution\n" +
+            "・Multi-model: Switch between LLMs to compare the same prompt\n" +
+            "・Execution log: Record input, output, token count\n\n" +
+            "Tech stack: React / TypeScript / Fastify / Prisma / MySQL"
         }
       }
     };
@@ -2131,10 +2257,18 @@
         "./assets/mbti/extra.jpg",
         "./assets/mbti/jtype.jpg",
         "./assets/mbti/ptype2.jpg"
+      ],
+      prompt: [
+        "./assets/prompt/Screenshot 2026-02-08 at 13.29.21.png",
+        "./assets/prompt/Screenshot 2026-02-08 at 13.42.49.png",
+        "./assets/prompt/Screenshot 2026-02-08 at 13.44.04.png",
+        "./assets/prompt/Screenshot 2026-02-08 at 13.44.14.png"
       ]
     };
 
+    let currentModalKey = '';
     function openModal(key){
+      currentModalKey = key;
       const d = modalDetails[currentLang]?.[key];
       if (!d) return;
       modalTitle.textContent = d.title;
@@ -2191,11 +2325,13 @@
       currentIndex = index;
       lightboxImg.src = currentImages[currentIndex];
       lightbox.classList.add("active");
+      if (currentModalKey === 'prompt' || currentModalKey === 'prompt_debug') lightbox.classList.add('prompt-enlarge');
       updateNavButtons();
     }
 
     function closeLightbox(){
       lightbox.classList.remove("active");
+      lightbox.classList.remove("prompt-enlarge");
     }
 
     function showPrevImage(){
