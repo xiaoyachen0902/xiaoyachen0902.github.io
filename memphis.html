@@ -1166,6 +1166,27 @@
               <li data-i18n="projects.prompt.feature3">実行ログ：入力・出力・トークン数を記録し、プロンプト改善に活用</li>
             </ul>
           </div>
+
+          <div class="app-card" data-key="record-job">
+            <h3 class="app-title" data-i18n="projects.recordJob.title">Record Job</h3>
+            <p class="app-sub" data-i18n="projects.recordJob.subtitle">求職・面接の記録用アプリ。投遞管理・看板・準備チェック・面接セッション・振り返りで、選考を一元管理できる Web アプリです。</p>
+            <div class="app-tags">
+              <span data-i18n="projects.recordJob.tag1">投遞管理</span>
+              <span data-i18n="projects.recordJob.tag2">看板</span>
+              <span data-i18n="projects.recordJob.tag3">準備チェック</span>
+              <span data-i18n="projects.recordJob.tag4">面接振り返り</span>
+            </div>
+            <div class="app-media">
+              <img src="./assets/job/Screenshot%202026-02-08%20at%2020.13.02.png" alt="Record Job 看板">
+              <img src="./assets/job/Screenshot%202026-02-08%20at%2020.18.27.png" alt="詳細ドロワー">
+              <img src="./assets/job/Screenshot%202026-02-08%20at%2020.18.35.png" alt="準備チェック">
+            </div>
+            <ul class="app-list">
+              <li data-i18n="projects.recordJob.feature1">看板ビュー：ステージ別にカードを並べ、ドラッグで進捗を更新</li>
+              <li data-i18n="projects.recordJob.feature2">準備チェック：JD 確認・自己紹介・STAR などデフォルト項目＋テンプレで準備を漏れなく</li>
+              <li data-i18n="projects.recordJob.feature3">面接セッション・振り返り：日時・質問・回答・次回アクションを記録し改善に活用</li>
+            </ul>
+          </div>
         </div>
 
         <div class="block-title" data-i18n="work.workProjects">Work Projects</div>
@@ -1666,6 +1687,15 @@
             "・マルチモデル対応：複数 LLM を切り替えて同一プロンプトを比較\n" +
             "・実行ログ：入力・出力・トークン数を記録\n\n" +
             "技術スタック：React / TypeScript / Fastify / Prisma / MySQL"
+        },
+        "record-job": {
+          title: "Record Job",
+          text:
+            "求職・面接の記録用アプリ。投遞管理・看板・準備チェック・面接セッション・振り返りで、選考を一元管理できる Web アプリです。\n\n" +
+            "【主な機能】\n" +
+            "・看板ビュー：ステージ別にカードを並べ、ドラッグで進捗を更新\n" +
+            "・準備チェック：JD 確認・自己紹介・STAR などデフォルト項目＋テンプレで準備を漏れなく\n" +
+            "・面接セッション・振り返り：日時・質問・回答・次回アクションを記録し改善に活用"
         }
       },
       en: {
@@ -1733,6 +1763,15 @@
             "・Multi-model: Switch between LLMs to compare the same prompt\n" +
             "・Execution log: Record input, output, token count\n\n" +
             "Tech stack: React / TypeScript / Fastify / Prisma / MySQL"
+        },
+        "record-job": {
+          title: "Record Job",
+          text:
+            "Web app for job-search and interview tracking. Manage applications, kanban, prep checklists, interview sessions, and reflections in one place.\n\n" +
+            "【Key Features】\n" +
+            "・Kanban view: Cards by stage, drag to update progress\n" +
+            "・Prep checklist: JD, intro, STAR and default items plus templates so you don't miss prep\n" +
+            "・Interview session & review: Log date, Q&A, next actions and use for improvement"
         }
       }
     };
@@ -1760,6 +1799,14 @@
         "./assets/prompt/Screenshot 2026-02-08 at 13.42.49.png",
         "./assets/prompt/Screenshot 2026-02-08 at 13.44.04.png",
         "./assets/prompt/Screenshot 2026-02-08 at 13.44.14.png"
+      ],
+      "record-job": [
+        "./assets/job/Screenshot 2026-02-08 at 20.13.02.png",
+        "./assets/job/Screenshot 2026-02-08 at 20.18.27.png",
+        "./assets/job/Screenshot 2026-02-08 at 20.18.35.png",
+        "./assets/job/Screenshot 2026-02-08 at 20.18.44.png",
+        "./assets/job/Screenshot 2026-02-08 at 20.18.51.png",
+        "./assets/job/Screenshot 2026-02-08 at 20.18.56.png"
       ]
     };
 
@@ -1810,7 +1857,7 @@
       currentIndex = index;
       lightboxImg.src = currentImages[currentIndex];
       lightbox.classList.add("active");
-      if (currentModalKey === 'prompt' || currentModalKey === 'prompt_debug') lightbox.classList.add('prompt-enlarge');
+      if (currentModalKey === 'prompt' || currentModalKey === 'prompt_debug' || currentModalKey === 'record-job') lightbox.classList.add('prompt-enlarge');
       updateNavButtons();
     }
 
@@ -1945,6 +1992,17 @@
             feature1: "フローエディタ：ステップをノードでつなぎ、分岐・条件付き実行を可視化",
             feature2: "マルチモデル対応：複数 LLM を切り替えて同一プロンプトを比較",
             feature3: "実行ログ：入力・出力・トークン数を記録し、プロンプト改善に活用"
+          },
+          recordJob: {
+            title: "Record Job",
+            subtitle: "求職・面接の記録用アプリ。投遞管理・看板・準備チェック・面接セッション・振り返りで、選考を一元管理できる Web アプリです。",
+            tag1: "投遞管理",
+            tag2: "看板",
+            tag3: "準備チェック",
+            tag4: "面接振り返り",
+            feature1: "看板ビュー：ステージ別にカードを並べ、ドラッグで進捗を更新",
+            feature2: "準備チェック：JD 確認・自己紹介・STAR などデフォルト項目＋テンプレで準備を漏れなく",
+            feature3: "面接セッション・振り返り：日時・質問・回答・次回アクションを記録し改善に活用"
           }
         },
         workProjects: {
@@ -2069,6 +2127,17 @@
             feature1: "Flow editor: Connect steps as nodes, visualize branches and conditional execution",
             feature2: "Multi-model: Switch between LLMs to compare the same prompt",
             feature3: "Execution log: Record input, output, token count for prompt improvement"
+          },
+          recordJob: {
+            title: "Record Job",
+            subtitle: "Web app for job-search and interview tracking. Manage applications, kanban, prep checklists, interview sessions, and reflections in one place.",
+            tag1: "APPLICATIONS",
+            tag2: "KANBAN",
+            tag3: "PREP CHECK",
+            tag4: "INTERVIEW REVIEW",
+            feature1: "Kanban view: Cards by stage, drag to update progress",
+            feature2: "Prep checklist: JD, intro, STAR and default items plus templates so you don't miss prep",
+            feature3: "Interview session & review: Log date, Q&A, next actions and use for improvement"
           }
         },
         workProjects: {
