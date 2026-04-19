@@ -743,7 +743,8 @@
       margin-bottom:12px;
     }
     
-    .app-media img{
+    .app-media img,
+    .app-media video{
       width:100%;
       aspect-ratio:1;
       object-fit:cover;
@@ -752,8 +753,16 @@
       filter:saturate(0.4) contrast(1.05);
       box-shadow:var(--shadow);
     }
+
+    .app-media video{
+      grid-column:1 / -1;
+      aspect-ratio:16 / 9;
+      background:#111827;
+      filter:none;
+    }
     
-    .app-media img:hover{
+    .app-media img:hover,
+    .app-media video:hover{
       transform:translate(-2px, -2px);
       box-shadow:4px 4px 0 rgba(0,0,0,0.3);
     }
@@ -1318,7 +1327,8 @@
       }
     }
     
-    .modal-images img{
+    .modal-images img,
+    .modal-images video{
       width:100%;
       aspect-ratio:1;
       object-fit:cover;
@@ -1327,6 +1337,14 @@
       box-shadow:var(--shadow);
       border:3px solid var(--black);
       filter:saturate(0.4) contrast(1.05);
+    }
+
+    .modal-images video{
+      grid-column:1 / -1;
+      aspect-ratio:16 / 9;
+      background:#111827;
+      cursor:auto;
+      filter:none;
     }
     
     .modal-images img:hover{
@@ -1592,6 +1610,25 @@
 
         <div class="block-title" data-i18n="work.personal">PERSONAL PROJECTS</div>
         <div class="app-grid">
+          <div class="app-card" data-key="document-ai-search">
+            <h3 class="app-title" data-i18n="projects.documentAiSearch.title">Document AI Search</h3>
+            <p class="app-sub" data-i18n="projects.documentAiSearch.subtitle">PDFアップロード型・日英対応の社内ナレッジベースRAGアプリです。</p>
+            <div class="app-tags">
+              <span data-i18n="projects.documentAiSearch.tag1">RAG</span>
+              <span data-i18n="projects.documentAiSearch.tag2">PDF検索</span>
+              <span data-i18n="projects.documentAiSearch.tag3">根拠表示</span>
+              <span data-i18n="projects.documentAiSearch.tag4">HR分析</span>
+            </div>
+            <div class="app-media">
+              <video src="./assets/document-ai-search/demo.mov" muted playsinline controls preload="metadata" onclick="event.stopPropagation()"></video>
+            </div>
+            <ul class="app-list">
+              <li data-i18n="projects.documentAiSearch.feature1">PDF 取り込み、OpenAI embeddings、Qdrant indexing を実装</li>
+              <li data-i18n="projects.documentAiSearch.feature2">Fast / Balanced / Deep の回答モードと根拠付きストリーミング回答</li>
+              <li data-i18n="projects.documentAiSearch.feature3">カテゴリ管理、HR 分析、RAG・Agent 管理者設定を搭載</li>
+            </ul>
+          </div>
+
           <div class="app-card" data-key="pet">
             <h3 class="app-title" data-i18n="projects.pet.title">もふもふペットダイアリー</h3>
             <p class="app-sub" data-i18n="projects.pet.subtitle">大切なペット家族との毎日を、かわいく・簡単に記録できる iOS アプリです。</p>
@@ -2078,6 +2115,17 @@
           workProjects: "WORK PROJECTS"
         },
         projects: {
+          documentAiSearch: {
+            title: "Document AI Search",
+            subtitle: "PDFアップロード型・日英対応の社内ナレッジベースRAGアプリです。",
+            tag1: "RAG",
+            tag2: "PDF検索",
+            tag3: "根拠表示",
+            tag4: "HR分析",
+            feature1: "PDF 取り込み、OpenAI embeddings、Qdrant indexing を実装",
+            feature2: "Fast / Balanced / Deep の回答モードと根拠付きストリーミング回答",
+            feature3: "カテゴリ管理、HR 分析、RAG・Agent 管理者設定を搭載"
+          },
           pet: {
             title: "もふもふペットダイアリー",
             subtitle: "大切なペット家族との毎日を、かわいく・簡単に記録できる iOS アプリです。",
@@ -2214,6 +2262,17 @@
           workProjects: "WORK PROJECTS"
         },
         projects: {
+          documentAiSearch: {
+            title: "Document AI Search",
+            subtitle: "Bilingual RAG Knowledge Base for Uploaded PDFs.",
+            tag1: "RAG",
+            tag2: "PDF SEARCH",
+            tag3: "CITATIONS",
+            tag4: "HR ANALYTICS",
+            feature1: "Implemented PDF ingestion, OpenAI embeddings, and Qdrant indexing",
+            feature2: "Built Fast / Balanced / Deep answer modes with source-cited streaming chat",
+            feature3: "Added category management, HR analytics, and RAG / Agent admin controls"
+          },
           pet: {
             title: "FLUFFY PET DIARY",
             subtitle: "iOS app to easily record everyday moments with your beloved pet family.",
@@ -2393,6 +2452,10 @@
           title: "自動化テスト導入支援",
           text: "大手航空会社のシステム刷新プロジェクトで、自社の自動化テストツール導入を支援。自動化対象の定義、テンプレート作成、テスト実行・分析、最終報告まで担当し、運用ノウハウの共有も実施。"
         },
+        "document-ai-search": {
+          title: "Document AI Search",
+          text: "PDFアップロード型・日英対応の社内ナレッジベースRAGアプリです。\n\nユーザーは PDF をアップロードし、カテゴリごとに文書を管理しながら、日本語または英語で質問できます。バックエンドでは PDF からテキストを抽出し、チャンク分割、OpenAI embedding の生成、Qdrant への保存を行います。\n\n【主な機能】\n・根拠付きストリーミング回答と参照元チャンク表示\n・Fast / Balanced / Deep の回答モード、ハイブリッド検索、LLM reranking\n・HR 分析、フィードバック収集、未回答質問、RAG パラメータ・Agent ツール管理\n\n技術スタック：Next.js / TypeScript / FastAPI / Qdrant / OpenAI API / SQLite"
+        },
         prompt_debug: {
           title: "Prompt Debug（Agent・プロンプト调试平台）",
           text: "エンジニア向けのプロンプト・Agent デバッグ用 Web ツール。フロー編集・マルチモデル・実行ログでプロンプトの試行錯誤を効率化。\n\n【主な機能】\n・フローエディタ：ステップをノードでつなぎ、分岐・条件付き実行を可視化\n・マルチモデル対応：複数 LLM を切り替えて同一プロンプトを比較\n・実行ログ：入力・出力・トークン数を記録\n\n技術スタック：React / TypeScript / Fastify / Prisma / MySQL"
@@ -2431,6 +2494,10 @@
           title: "Test Automation Support",
           text: "Supported implementation of proprietary test automation tools for major airline's system renovation. Handled everything from defining automation scope, creating templates, test execution/analysis, to final reporting and knowledge sharing."
         },
+        "document-ai-search": {
+          title: "Document AI Search",
+          text: "A bilingual full-stack RAG application that turns uploaded PDF documents into a searchable internal knowledge base.\n\nUsers can upload PDFs, organize documents by category, and ask questions in Japanese or English. Uploaded documents are processed through a PDF ingestion pipeline that extracts text, chunks content, generates OpenAI embeddings, and stores vectors and metadata in Qdrant.\n\n【Key Features】\n・Source-cited streaming chat with visible reference chunks\n・Fast / Balanced / Deep answer modes, hybrid retrieval, and LLM reranking\n・HR analytics, feedback tracking, unanswered questions, and RAG / Agent admin controls\n\nTech stack: Next.js / TypeScript / FastAPI / Qdrant / OpenAI API / SQLite"
+        },
         prompt_debug: {
           title: "Prompt Debug (Agent・Prompt Debugging Platform)",
           text: "Web tool for engineers to debug prompts and Agents. Flow editing, multi-model, and execution logs to streamline prompt iteration.\n\n【Key Features】\n・Flow editor: Connect steps as nodes, visualize branches and conditional execution\n・Multi-model: Switch between LLMs to compare the same prompt\n・Execution log: Record input, output, token count\n\nTech stack: React / TypeScript / Fastify / Prisma / MySQL"
@@ -2455,6 +2522,7 @@
     };
     
     const projectImages = {
+      "document-ai-search": [],
       pet: [
         "./assets/pet/homepage.png",
         "./assets/pet/detailai.png",
@@ -2488,6 +2556,10 @@
       ]
     };
 
+    const projectVideos = {
+      "document-ai-search": "./assets/document-ai-search/demo.mov"
+    };
+
     let currentModalKey = '';
     function openModal(key){
       currentModalKey = key;
@@ -2506,6 +2578,16 @@
           img.addEventListener("click", () => openLightbox(images, index));
           modalImages.appendChild(img);
         });
+      }
+      const videoSrc = projectVideos[key];
+      if (videoSrc) {
+        const video = document.createElement("video");
+        video.src = videoSrc;
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = "metadata";
+        video.addEventListener("click", (event) => event.stopPropagation());
+        modalImages.appendChild(video);
       }
       
       overlay.style.display = "flex";
