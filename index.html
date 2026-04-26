@@ -252,6 +252,64 @@
       transform:translate(-4px, -4px);
       box-shadow:10px 10px 0 rgba(0,0,0,0.3);
     }
+
+    /* Hero Portfolio Card */
+    .style-card.hero{
+      background:#F5F7FC;
+      border:1px solid rgba(10,10,10,0.08);
+      overflow:hidden;
+    }
+
+    .style-card.hero::before{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      left:50%;
+      bottom:-170px;
+      transform:translateX(-50%);
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(250,126,160,0.6), rgba(255,148,121,0.6) 58%, transparent 72%);
+    }
+
+    .style-card.hero::after{
+      content:"";
+      position:absolute;
+      right:26px;
+      top:24px;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:#FA7EA0;
+    }
+
+    .style-card.hero .card-title{
+      font-size:28px;
+      font-weight:900;
+      color:#0A0A0A;
+      margin-bottom:16px;
+      letter-spacing:0;
+      position:relative;
+      z-index:1;
+    }
+
+    .style-card.hero .card-title span{
+      color:#FA7EA0;
+    }
+
+    .style-card.hero .card-desc{
+      color:#4b5563;
+      font-size:14px;
+      line-height:1.8;
+      font-weight:600;
+      position:relative;
+      z-index:1;
+    }
+
+    .style-card.hero .card-desc .lang-line{
+      display:block;
+      margin:6px 0;
+    }
     
     @media (max-width:768px){
       .styles-grid{
@@ -299,8 +357,8 @@
         </div>
       </a>
 
-      <!-- Modern Style -->
-      <a href="modern.html" class="style-card modern">
+      <!-- Modern Style → now points to hero-portfolio -->
+      <a href="hero-portfolio.html" class="style-card modern">
         <h2 class="card-title">Modern</h2>
         <div class="card-desc">
           <span class="lang-line">低彩度グラデーションとガラス効果</span>
@@ -322,7 +380,7 @@
   </div>
 
   <script>
-    const styles = ['memphis.html', 'modern.html', 'retro.html'];
+    const styles = ['memphis.html', 'hero-portfolio.html', 'retro.html'];
     let countdown = 5;
     let countdownTimer;
 
