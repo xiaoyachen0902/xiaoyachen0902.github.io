@@ -585,6 +585,23 @@
     .photo-frame:nth-child(4){
       display:none;
     }
+
+    .photo-frame:nth-child(5){
+      inset:auto -18px 18px auto;
+      width:142px;
+      height:178px;
+      align-items:center;
+      border:3px solid rgba(255,255,255,0.92);
+      border-radius:18px;
+      box-shadow:0 16px 34px rgba(0,0,0,0.24);
+      background:#fff;
+      transform:rotate(4deg);
+    }
+
+    .photo-frame:nth-child(5) img{
+      object-fit:cover;
+      object-position:center;
+    }
     
     .photo-frame:hover{
       transform:none;
@@ -661,6 +678,14 @@
       
       .photo-frame:nth-child(1){
         border-radius:0;
+      }
+
+      .photo-frame:nth-child(5){
+        width:104px;
+        height:132px;
+        right:-6px;
+        bottom:12px;
+        border-radius:14px;
       }
     }
 
@@ -2140,6 +2165,9 @@
             <div class="photo-frame">
               <img src="./assets/home/CC1D3165-7481-4493-9633-572C01036230.jpeg" alt="My journey">
             </div>
+            <div class="photo-frame">
+              <img src="./assets/home/camino.jpg" alt="Camino de Santiago hike">
+            </div>
           </div>
         </div>
       </div>
@@ -2154,7 +2182,7 @@
           2022年から IT エンジニアとしてキャリアをスタート。<br>
           現在は Java / Kotlin を中心に Web システムを開発しています。<br>
           バックエンドがメインですが、Vue.js を使ったフロントエンド開発も好きです。<br><br>
-          コードを書いていない時間は、海外旅行の計画を立てたり、週末に山へ登って自然の中でリフレッシュしたり。新しい景色に出会うことが、ものづくりの原動力になっています。<br>
+          コードを書いていない時間は、海外旅行の計画を立てたり、週末に山へ登って自然の中でリフレッシュしたり。現在は Camino de Santiago のフランス人の道・約800kmにも挑戦中です。新しい景色に出会うことが、ものづくりの原動力になっています。<br>
         </p>
 
         <div class="hero-tags">
@@ -2710,7 +2738,7 @@
         },
         home: {
           title: "私は <span class=\"accent\">Xiaoya</span>,<br>Full-stack Engineer",
-          intro: "2014年に日本へ渡り、早稲田大学で学生生活を送りました。<br>卒業後はイギリスの大学院に進学し、視野と好奇心を広げる日々を経験。<br><br>2022年から IT エンジニアとしてキャリアをスタート。<br>現在は Java / Kotlin を中心に Web システムを開発しています。<br>バックエンドがメインですが、Vue.js を使ったフロントエンド開発も好きです。<br><br>コードを書いていない時間は、海外旅行の計画を立てたり、週末に山へ登って自然の中でリフレッシュしたり。新しい景色に出会うことが、ものづくりの原動力になっています。<br>"
+          intro: "2014年に日本へ渡り、早稲田大学で学生生活を送りました。<br>卒業後はイギリスの大学院に進学し、視野と好奇心を広げる日々を経験。<br><br>2022年から IT エンジニアとしてキャリアをスタート。<br>現在は Java / Kotlin を中心に Web システムを開発しています。<br>バックエンドがメインですが、Vue.js を使ったフロントエンド開発も好きです。<br><br>コードを書いていない時間は、海外旅行の計画を立てたり、週末に山へ登って自然の中でリフレッシュしたり。現在は Camino de Santiago のフランス人の道・約800kmにも挑戦中です。新しい景色に出会うことが、ものづくりの原動力になっています。<br>"
         },
         impact: {
           work1: "文書AI検索とプロンプトツール",
@@ -2866,7 +2894,7 @@
         },
         home: {
           title: "I'm <span class=\"accent\">Xiaoya</span>,<br>Full-stack Engineer",
-          intro: "I came to Japan in 2014 and spent my student life at Waseda University.<br>After graduation, I pursued a master's degree in the UK, broadening my horizons and curiosity.<br><br>In 2022, I started my career as an IT engineer.<br>Currently, I develop web systems mainly using Java / Kotlin.<br>While backend is my forte, I also enjoy frontend development with Vue.js.<br><br>When I'm not coding, I plan overseas trips or hike mountains on weekends to refresh in nature. Discovering new landscapes fuels my passion for creation.<br>"
+          intro: "I came to Japan in 2014 and spent my student life at Waseda University.<br>After graduation, I pursued a master's degree in the UK, broadening my horizons and curiosity.<br><br>In 2022, I started my career as an IT engineer.<br>Currently, I develop web systems mainly using Java / Kotlin.<br>While backend is my forte, I also enjoy frontend development with Vue.js.<br><br>When I'm not coding, I plan overseas trips or hike mountains on weekends to refresh in nature. I'm also currently taking on the Camino Frances, an approximately 800 km route of the Camino de Santiago. Discovering new landscapes fuels my passion for creation.<br>"
         },
         impact: {
           work1: "Document intelligence and prompt tools",
