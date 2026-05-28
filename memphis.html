@@ -1024,6 +1024,13 @@
       section.panel{ transition:none; }
       .scroll-dot{ transition:none; }
     }
+
+    .modal-images.large-preview{
+      grid-template-columns:repeat(2, 1fr);
+    }
+    .modal-images.large-preview img{
+      aspect-ratio:9/10;
+    }
   </style>
 </head>
 <body>
@@ -1149,6 +1156,49 @@
 
         <div class="block-title" data-i18n="work.personal">Personal Projects</div>
         <div class="app-grid">
+          <div class="app-card" data-key="deep-search">
+            <h3 class="app-title" data-i18n="projects.deepSearch.title">Multi-Agent Deep Research System</h3>
+            <p class="app-sub" data-i18n="projects.deepSearch.subtitle">質問を入力すると自動で検索・分析し、引用付きレポートを生成するマルチエージェントシステムです。</p>
+            <div class="app-tags">
+              <span data-i18n="projects.deepSearch.tag1">LangGraph</span>
+              <span data-i18n="projects.deepSearch.tag2">マルチエージェント</span>
+              <span data-i18n="projects.deepSearch.tag3">Deep Search</span>
+              <span data-i18n="projects.deepSearch.tag4">RAG + Web検索</span>
+            </div>
+            <div class="app-media">
+              <img src="./assets/deep-search/deep-search1.png" alt="Deep Research System">
+              <img src="./assets/deep-search/deep-search2.png" alt="Research Pipeline">
+              <img src="./assets/deep-search/deep-search3.png" alt="Research Report">
+              <img src="./assets/deep-search/deep-search4.png" alt="Research Results">
+            </div>
+            <ul class="app-list">
+              <li data-i18n="projects.deepSearch.feature1">Intent Router → Planner → 並列検索 → Evidence Judge → Analyst → Writer のフロー</li>
+              <li data-i18n="projects.deepSearch.feature2">証拠不十分なら「振り返り・再検索」ループを自動実行</li>
+              <li data-i18n="projects.deepSearch.feature3">DuckDuckGo ＋ Milvus ベクターDB によるハイブリッド検索</li>
+            </ul>
+          </div>
+
+          <div class="app-card" data-key="cloud-agent">
+            <h3 class="app-title" data-i18n="projects.cloudAgent.title">Cloud Platform Intelligent Customer Service System</h3>
+            <p class="app-sub" data-i18n="projects.cloudAgent.subtitle">クラウドサービスの問い合わせに特化した、マルチエージェントAIカスタマーサービスプラットフォームです。</p>
+            <div class="app-tags">
+              <span data-i18n="projects.cloudAgent.tag1">LangGraph</span>
+              <span data-i18n="projects.cloudAgent.tag2">マルチエージェント</span>
+              <span data-i18n="projects.cloudAgent.tag3">FinOps</span>
+              <span data-i18n="projects.cloudAgent.tag4">MCP Tooling</span>
+            </div>
+            <div class="app-media">
+              <img src="./assets/cloud/cloudagent1.png" alt="Cloud Agent Platform">
+              <img src="./assets/cloud/cloudagent2.png" alt="Agent Routing">
+              <img src="./assets/cloud/cloudagent3.png" alt="FinOps Dashboard">
+            </div>
+            <ul class="app-list">
+              <li data-i18n="projects.cloudAgent.feature1">5つの専門エージェント（製品・課金・プロモーション・推薦・FinOps）へ自動ルーティング</li>
+              <li data-i18n="projects.cloudAgent.feature2">Redis（短期）＋ Milvus（長期）のデュアルレイヤーメモリでセッション横断の文脈管理</li>
+              <li data-i18n="projects.cloudAgent.feature3">FastMCP + Vue 3 / TypeScript フロントエンド、FinOps ワークフローで課金データ→コスト最適化</li>
+            </ul>
+          </div>
+
           <div class="app-card" data-key="document-ai-search">
             <h3 class="app-title" data-i18n="projects.documentAiSearch.title">Document AI Search</h3>
             <p class="app-sub" data-i18n="projects.documentAiSearch.subtitle">PDFアップロード型・日英対応の社内ナレッジベースRAGアプリです。</p>
@@ -1210,48 +1260,6 @@
               <li data-i18n="projects.mbti.feature3">旅行メモ・評価・タグで思い出を整理</li>
             </ul>
             <p class="app-store-wrap"><a href="https://apps.apple.com/jp/app/%E6%80%A7%E6%A0%BC%E6%97%A5%E5%9B%BE-%E6%97%85%E6%B8%B8%E8%A1%8C%E7%A8%8B%E8%A7%84%E5%88%92-%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5%E5%88%9B%E5%BB%BA%E5%AF%BC%E5%87%BA%E5%8A%A9%E6%89%8B/id6743542763" target="_blank" rel="noopener noreferrer" class="app-store-link" data-i18n="projects.mbti.appStore" onclick="event.stopPropagation()">App Store で見る</a></p>
-          </div>
-
-          <div class="app-card" data-key="prompt">
-            <h3 class="app-title" data-i18n="projects.prompt.title">Prompt Debug</h3>
-            <p class="app-sub" data-i18n="projects.prompt.subtitle">Agent・プロンプトのデバッグ用ラボ。フロー編集・マルチモデル・実行ログでプロンプトを試行錯誤できる Web アプリです。</p>
-            <div class="app-tags">
-              <span data-i18n="projects.prompt.tag1">プロンプト編集</span>
-              <span data-i18n="projects.prompt.tag2">フロー</span>
-              <span data-i18n="projects.prompt.tag3">マルチモデル</span>
-              <span data-i18n="projects.prompt.tag4">実行デバッグ</span>
-            </div>
-            <div class="app-media">
-              <img src="./assets/prompt/Screenshot%202026-02-08%20at%2013.29.21.png" alt="Prompt Debug">
-              <img src="./assets/prompt/Screenshot%202026-02-08%20at%2013.42.49.png" alt="フロー編集">
-              <img src="./assets/prompt/Screenshot%202026-02-08%20at%2013.44.04.png" alt="実行ログ">
-            </div>
-            <ul class="app-list">
-              <li data-i18n="projects.prompt.feature1">フローエディタ：ステップをノードでつなぎ、分岐・条件付き実行を可視化</li>
-              <li data-i18n="projects.prompt.feature2">マルチモデル対応：複数 LLM を切り替えて同一プロンプトを比較</li>
-              <li data-i18n="projects.prompt.feature3">実行ログ：入力・出力・トークン数を記録し、プロンプト改善に活用</li>
-            </ul>
-          </div>
-
-          <div class="app-card" data-key="record-job">
-            <h3 class="app-title" data-i18n="projects.recordJob.title">Record Job</h3>
-            <p class="app-sub" data-i18n="projects.recordJob.subtitle">求職・面接の記録用アプリ。投遞管理・看板・準備チェック・面接セッション・振り返りで、選考を一元管理できる Web アプリです。</p>
-            <div class="app-tags">
-              <span data-i18n="projects.recordJob.tag1">投遞管理</span>
-              <span data-i18n="projects.recordJob.tag2">看板</span>
-              <span data-i18n="projects.recordJob.tag3">準備チェック</span>
-              <span data-i18n="projects.recordJob.tag4">面接振り返り</span>
-            </div>
-            <div class="app-media">
-              <img src="./assets/job/Screenshot%202026-02-08%20at%2020.13.02.png" alt="Record Job 看板">
-              <img src="./assets/job/Screenshot%202026-02-08%20at%2020.18.27.png" alt="詳細ドロワー">
-              <img src="./assets/job/Screenshot%202026-02-08%20at%2020.18.35.png" alt="準備チェック">
-            </div>
-            <ul class="app-list">
-              <li data-i18n="projects.recordJob.feature1">看板ビュー：ステージ別にカードを並べ、ドラッグで進捗を更新</li>
-              <li data-i18n="projects.recordJob.feature2">準備チェック：JD 確認・自己紹介・STAR などデフォルト項目＋テンプレで準備を漏れなく</li>
-              <li data-i18n="projects.recordJob.feature3">面接セッション・振り返り：日時・質問・回答・次回アクションを記録し改善に活用</li>
-            </ul>
           </div>
         </div>
 
@@ -1773,6 +1781,31 @@
             "・看板ビュー：ステージ別にカードを並べ、ドラッグで進捗を更新\n" +
             "・準備チェック：JD 確認・自己紹介・STAR などデフォルト項目＋テンプレで準備を漏れなく\n" +
             "・面接セッション・振り返り：日時・質問・回答・次回アクションを記録し改善に活用"
+        },
+        "deep-search": {
+          title: "Multi-Agent Deep Research System",
+          text:
+            "質問を入力するだけで、検索・分析・引用付きレポートを自動生成するマルチエージェントシステムです。\n\n" +
+            "【システムの仕組み】\n" +
+            "・Intent Router：クイック回答か本格リサーチかを判断\n" +
+            "・Planner：質問をサブクエリに分解しサーチプランを作成\n" +
+            "・Web検索 ＋ ローカル RAG を並列実行\n" +
+            "・Evidence Judge：各ソースの信頼性をスコアリング\n" +
+            "・Analyst：証拠十分か判断、不足なら反省・再検索ループへ\n" +
+            "・Writer：インライン引用付き Markdown レポートを生成\n\n" +
+            "通常の RAG パイプラインと異なり「いつ知識が足りないか」を自ら認識し再検索する点が特徴。\n\n" +
+            "技術スタック：LangGraph / FastAPI / Vue 3 / DuckDuckGo / Milvus / OpenAI・Qwen 対応"
+        },
+        "cloud-agent": {
+          title: "Cloud Platform Intelligent Customer Service System",
+          text:
+            "クラウドコンピューティングサービスの問い合わせに特化した、プロダクション想定のマルチエージェント AI カスタマーサービスプラットフォームです。\n\n" +
+            "【アーキテクチャ】\n" +
+            "・LangGraph による中央 Orchestrator が、5 つの専門エージェント（製品 Q&A・課金・プロモーション・推薦・FinOps）へルーティング\n" +
+            "・デュアルレイヤーメモリ：Redis（短期会話履歴）＋ Milvus（長期ユーザー嗜好）\n" +
+            "・FastMCP 経由の MCP Tooling で外部ツール・構造化データソースに接続\n" +
+            "・FinOps ワークフロー：課金データを直接コスト最適化分析へ受け渡すクロスエージェント状態管理\n\n" +
+            "技術スタック：LangGraph / FastAPI / Vue 3 / TypeScript / Element Plus / Redis / Milvus / FastMCP"
         }
       },
       en: {
@@ -1860,6 +1893,31 @@
             "・Kanban view: Cards by stage, drag to update progress\n" +
             "・Prep checklist: JD, intro, STAR and default items plus templates so you don't miss prep\n" +
             "・Interview session & review: Log date, Q&A, next actions and use for improvement"
+        },
+        "deep-search": {
+          title: "Multi-Agent Deep Research System",
+          text:
+            "A multi-agent system that automatically searches, analyzes, and generates cited research reports from a single question.\n\n" +
+            "【How it works】\n" +
+            "・Intent Router: decides quick answer vs full research mode\n" +
+            "・Planner: breaks the question into sub-questions and a search plan\n" +
+            "・Web search + local RAG run in parallel\n" +
+            "・Evidence Judge: scores every source for credibility\n" +
+            "・Analyst: checks if evidence is enough — reflects and re-searches if not\n" +
+            "・Writer: produces a structured Markdown report with inline citations\n\n" +
+            "Unlike basic RAG pipelines, the system knows when it doesn't know enough and triggers a reflect-and-re-search loop automatically.\n\n" +
+            "Tech stack: LangGraph / FastAPI / Vue 3 / DuckDuckGo / Milvus / OpenAI · Qwen compatible"
+        },
+        "cloud-agent": {
+          title: "Cloud Platform Intelligent Customer Service System",
+          text:
+            "A production-style multi-agent AI customer service platform for cloud computing services, powered by LangGraph and FastAPI.\n\n" +
+            "【Architecture Highlights】\n" +
+            "・Multi-agent orchestration with LangGraph: Orchestrator routes queries to 5 specialized agents (Product, Billing, Promotion, Recommendation, FinOps)\n" +
+            "・Dual-layer memory: Redis for short-term conversation history, Milvus for long-term user preference retrieval\n" +
+            "・MCP tooling via FastMCP for external tools and structured data sources\n" +
+            "・FinOps workflow with cross-agent state handoff: billing data feeds directly into cost optimization analysis\n\n" +
+            "Tech stack: LangGraph / FastAPI / Vue 3 / TypeScript / Element Plus / Redis / Milvus / FastMCP"
         }
       }
     };
@@ -1896,6 +1954,17 @@
         "./assets/job/Screenshot 2026-02-08 at 20.18.44.png",
         "./assets/job/Screenshot 2026-02-08 at 20.18.51.png",
         "./assets/job/Screenshot 2026-02-08 at 20.18.56.png"
+      ],
+      "deep-search": [
+        "./assets/deep-search/deep-search1.png",
+        "./assets/deep-search/deep-search2.png",
+        "./assets/deep-search/deep-search3.png",
+        "./assets/deep-search/deep-search4.png"
+      ],
+      "cloud-agent": [
+        "./assets/cloud/cloudagent1.png",
+        "./assets/cloud/cloudagent2.png",
+        "./assets/cloud/cloudagent3.png"
       ]
     };
 
@@ -1913,6 +1982,11 @@
       
       // 清空并填充图片
       modalImages.innerHTML = "";
+      if (key === 'deep-search' || key === 'cloud-agent') {
+        modalImages.classList.add('large-preview');
+      } else {
+        modalImages.classList.remove('large-preview');
+      }
       const images = projectImages[key];
       if (images && images.length > 0) {
         images.forEach((src, index) => {
@@ -1921,7 +1995,6 @@
           img.alt = d.title;
           img.dataset.index = index;
           img.dataset.images = JSON.stringify(images);
-          // 点击图片打开 lightbox
           img.addEventListener("click", () => openLightbox(images, index));
           modalImages.appendChild(img);
         });
@@ -1960,7 +2033,7 @@
       currentIndex = index;
       lightboxImg.src = currentImages[currentIndex];
       lightbox.classList.add("active");
-      if (currentModalKey === 'prompt' || currentModalKey === 'prompt_debug' || currentModalKey === 'record-job') lightbox.classList.add('prompt-enlarge');
+      if (currentModalKey === 'prompt' || currentModalKey === 'prompt_debug' || currentModalKey === 'record-job' || currentModalKey === 'deep-search' || currentModalKey === 'cloud-agent') lightbox.classList.add('prompt-enlarge');
       updateNavButtons();
     }
 
@@ -2119,6 +2192,28 @@
             feature1: "看板ビュー：ステージ別にカードを並べ、ドラッグで進捗を更新",
             feature2: "準備チェック：JD 確認・自己紹介・STAR などデフォルト項目＋テンプレで準備を漏れなく",
             feature3: "面接セッション・振り返り：日時・質問・回答・次回アクションを記録し改善に活用"
+          },
+          deepSearch: {
+            title: "Multi-Agent Deep Research System",
+            subtitle: "質問を入力すると自動で検索・分析し、引用付きレポートを生成するマルチエージェントシステムです。",
+            tag1: "LangGraph",
+            tag2: "マルチエージェント",
+            tag3: "Deep Search",
+            tag4: "RAG + Web検索",
+            feature1: "Intent Router → Planner → 並列検索 → Evidence Judge → Analyst → Writer のフロー",
+            feature2: "証拠不十分なら「振り返り・再検索」ループを自動実行",
+            feature3: "DuckDuckGo ＋ Milvus ベクターDB によるハイブリッド検索"
+          },
+          cloudAgent: {
+            title: "Cloud Platform Intelligent Customer Service System",
+            subtitle: "クラウドサービスの問い合わせに特化した、マルチエージェントAIカスタマーサービスプラットフォームです。",
+            tag1: "LangGraph",
+            tag2: "マルチエージェント",
+            tag3: "FinOps",
+            tag4: "MCP Tooling",
+            feature1: "5つの専門エージェント（製品・課金・プロモーション・推薦・FinOps）へ自動ルーティング",
+            feature2: "Redis（短期）＋ Milvus（長期）のデュアルレイヤーメモリでセッション横断の文脈管理",
+            feature3: "FastMCP + Vue 3 / TypeScript フロントエンド、FinOps ワークフローで課金データ→コスト最適化"
           }
         },
         workProjects: {
@@ -2267,6 +2362,28 @@
             feature1: "Kanban view: Cards by stage, drag to update progress",
             feature2: "Prep checklist: JD, intro, STAR and default items plus templates so you don't miss prep",
             feature3: "Interview session & review: Log date, Q&A, next actions and use for improvement"
+          },
+          deepSearch: {
+            title: "Multi-Agent Deep Research System",
+            subtitle: "A multi-agent system that automatically searches, analyzes, and generates cited research reports from a question.",
+            tag1: "LangGraph",
+            tag2: "Multi-Agent",
+            tag3: "Deep Search",
+            tag4: "RAG + Web Search",
+            feature1: "Intent Router → Planner → parallel search → Evidence Judge → Analyst → Writer pipeline",
+            feature2: "Auto reflect-and-re-search loop when evidence is insufficient",
+            feature3: "Hybrid search with DuckDuckGo + Milvus vector DB"
+          },
+          cloudAgent: {
+            title: "Cloud Platform Intelligent Customer Service System",
+            subtitle: "A production-style multi-agent AI customer service platform specialized for cloud computing services.",
+            tag1: "LangGraph",
+            tag2: "Multi-Agent",
+            tag3: "FinOps",
+            tag4: "MCP Tooling",
+            feature1: "Auto-routing to 5 specialized agents (Product, Billing, Promotion, Recommendation, FinOps)",
+            feature2: "Dual-layer memory: Redis (short-term) + Milvus (long-term) for cross-session context",
+            feature3: "FastMCP tooling + Vue 3 / TypeScript frontend with FinOps billing-to-cost-optimization workflow"
           }
         },
         workProjects: {
