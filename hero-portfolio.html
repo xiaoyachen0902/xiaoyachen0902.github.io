@@ -798,7 +798,7 @@
       line-height:1.5;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:0.08em;
+      letter-spacing:0;
       color:#4b5563;
     }
     
@@ -837,7 +837,7 @@
       color:rgba(250,126,160,0.86);
       font-size:18px;
       font-weight:900;
-      letter-spacing:0.14em;
+      letter-spacing:0;
     }
 
     .app-card::after{
@@ -1072,7 +1072,7 @@
       font-size:10px;
       font-weight:900;
       text-transform:uppercase;
-      letter-spacing:0.1em;
+      letter-spacing:0;
       margin-bottom:10px;
       display:inline-block;
       padding:5px 10px;
@@ -1344,7 +1344,7 @@
     .t-date{
       font-size:11px;
       font-weight:900;
-      letter-spacing:0.1em;
+      letter-spacing:0;
       margin-bottom:10px;
       display:inline-block;
       padding:5px 12px;
@@ -1798,7 +1798,7 @@
       font-size:clamp(44px,6.5vw,80px);
       font-weight:900;
       line-height:.9;
-      letter-spacing:-.02em;
+      letter-spacing:0;
       color:#0A0A0A;
       margin-bottom:48px;
       gap:14px;
@@ -2624,7 +2624,7 @@
       top:20px;
       right:22px;
       color:#afbdd0;
-      letter-spacing:0.08em;
+      letter-spacing:0;
     }
 
     .app-card:first-child{
@@ -2876,6 +2876,1001 @@
         opacity:0.12;
       }
     }
+
+    /* ===== Two-layer dream portfolio ===== */
+    .dream-home{
+      min-height:100vh;
+      padding:0;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,0.98), rgba(247,250,254,0.78) 34%, transparent 58%),
+        radial-gradient(circle at 23% 72%, rgba(214,228,247,0.38), transparent 36%),
+        radial-gradient(circle at 78% 68%, rgba(248,215,226,0.34), transparent 34%),
+        linear-gradient(180deg, #fbfcff 0%, #f3f7fc 100%);
+      overflow:hidden;
+    }
+
+    body.dream-bright .dream-home{
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,1), rgba(250,252,255,0.86) 36%, transparent 60%),
+        radial-gradient(circle at 23% 72%, rgba(219,233,250,0.28), transparent 36%),
+        radial-gradient(circle at 78% 68%, rgba(250,222,232,0.24), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+    }
+
+    .dream-shell{
+      position:relative;
+      min-height:100vh;
+      width:min(100%, 1440px);
+      margin:0 auto;
+      padding:106px 54px 34px;
+      display:grid;
+      grid-template-rows:auto minmax(310px, 1fr) auto auto;
+      place-items:center;
+      isolation:isolate;
+    }
+
+    .dream-shell::before,
+    .dream-shell::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    .dream-shell::before{
+      width:520px;
+      height:520px;
+      left:-220px;
+      top:160px;
+      background:radial-gradient(circle, rgba(199,219,244,0.22), transparent 68%);
+      filter:blur(8px);
+    }
+
+    .dream-shell::after{
+      width:460px;
+      height:460px;
+      right:-180px;
+      bottom:44px;
+      background:radial-gradient(circle, rgba(251,211,225,0.2), transparent 70%);
+      filter:blur(10px);
+    }
+
+    .round-control{
+      position:absolute;
+      top:92px;
+      width:68px;
+      height:68px;
+      border:1px solid rgba(217,224,234,0.72);
+      border-radius:50%;
+      background:linear-gradient(145deg, rgba(255,255,255,0.92), rgba(238,244,250,0.74));
+      box-shadow:
+        10px 12px 24px rgba(132,151,178,0.14),
+        -10px -10px 22px rgba(255,255,255,0.95),
+        inset 2px 2px 5px rgba(255,255,255,0.88),
+        inset -3px -4px 9px rgba(137,158,188,0.1);
+      cursor:pointer;
+      transition:transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .round-control:hover{
+      transform:translateY(-2px);
+      box-shadow:
+        14px 16px 28px rgba(132,151,178,0.18),
+        -12px -12px 24px rgba(255,255,255,0.98),
+        inset 2px 2px 5px rgba(255,255,255,0.92),
+        inset -3px -4px 9px rgba(137,158,188,0.12);
+    }
+
+    .menu-control{
+      left:54px;
+      display:grid;
+      place-content:center;
+      gap:7px;
+    }
+
+    .menu-control span{
+      width:25px;
+      height:2px;
+      border-radius:999px;
+      background:#9aa7b8;
+      box-shadow:0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .sun-control{
+      right:54px;
+    }
+
+    .sun-control span{
+      position:absolute;
+      inset:20px;
+      border:3px solid #98a5b8;
+      border-radius:50%;
+    }
+
+    .sun-control::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      background:
+        linear-gradient(#98a5b8, #98a5b8) center top / 2px 8px no-repeat,
+        linear-gradient(#98a5b8, #98a5b8) center bottom / 2px 8px no-repeat,
+        linear-gradient(90deg, #98a5b8, #98a5b8) left center / 8px 2px no-repeat,
+        linear-gradient(90deg, #98a5b8, #98a5b8) right center / 8px 2px no-repeat;
+      opacity:0.72;
+    }
+
+    .dream-title-block{
+      text-align:center;
+      align-self:end;
+      margin-top:8px;
+      transition:transform 240ms ease;
+    }
+
+    .dream-title-block h1{
+      margin:0;
+      color:#627084;
+      font-size:clamp(48px, 6vw, 86px);
+      font-weight:500;
+      line-height:1.06;
+      letter-spacing:0;
+      text-indent:0;
+      text-shadow:0 2px 0 rgba(255,255,255,0.88), 0 18px 32px rgba(105,126,154,0.12);
+    }
+
+    .dream-title-block p{
+      margin-top:14px;
+      color:#9ba7b8;
+      font-size:clamp(14px, 1.6vw, 24px);
+      font-weight:600;
+      letter-spacing:0;
+      text-indent:0;
+    }
+
+    .dream-world-stage{
+      position:relative;
+      width:min(44vw, 540px);
+      min-width:340px;
+      aspect-ratio:1.12;
+      display:grid;
+      place-items:center;
+      margin-top:-10px;
+      margin-bottom:-8px;
+      transition:transform 240ms ease;
+    }
+
+    .dream-world-stage::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:4%;
+      width:52%;
+      height:50px;
+      border-radius:50%;
+      background:radial-gradient(ellipse, rgba(120,139,166,0.18), rgba(185,203,224,0.08) 48%, transparent 72%);
+      transform:translateX(-50%);
+      filter:blur(3px);
+      z-index:-1;
+    }
+
+    .dream-world-art{
+      width:100%;
+      display:block;
+      filter:drop-shadow(0 28px 42px rgba(126,145,170,0.16)) saturate(0.92) brightness(1.05);
+      animation:dreamWorldFloat 7s ease-in-out infinite;
+    }
+
+    .tiny-star{
+      position:absolute;
+      width:18px;
+      height:18px;
+      transform:rotate(45deg);
+      background:linear-gradient(135deg, rgba(164,186,222,0.78), rgba(250,209,224,0.68));
+      clip-path:polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+      filter:drop-shadow(0 4px 8px rgba(129,149,178,0.12));
+      opacity:0.76;
+    }
+
+    .star-a{left:8%;top:34%;}
+    .star-b{right:12%;top:22%;width:22px;height:22px;}
+    .star-c{right:24%;bottom:18%;width:13px;height:13px;}
+
+    .portal-strip{
+      width:min(940px, 100%);
+      display:grid;
+      grid-template-columns:repeat(5, minmax(118px, 1fr));
+      gap:18px;
+      margin:4px auto 28px;
+      transition:transform 240ms ease;
+    }
+
+    .portal-pill,
+    .dream-primary,
+    .detail-link{
+      min-height:64px;
+      border:1px solid rgba(255,255,255,0.8);
+      border-radius:999px;
+      background:linear-gradient(145deg, rgba(255,255,255,0.94), rgba(235,242,250,0.86));
+      color:#6b7789;
+      box-shadow:
+        10px 12px 22px rgba(132,151,178,0.16),
+        -10px -10px 22px rgba(255,255,255,0.96),
+        inset 1px 1px 0 rgba(255,255,255,0.94),
+        inset -4px -5px 12px rgba(125,151,184,0.08);
+      font:inherit;
+      font-size:16px;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform 180ms ease, box-shadow 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .portal-pill{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:0 16px;
+    }
+
+    .portal-pill:hover,
+    .portal-pill.active{
+      color:#5f7190;
+      transform:translateY(-3px);
+      background:linear-gradient(145deg, #ffffff, #e8f1fb);
+      box-shadow:
+        13px 16px 28px rgba(132,151,178,0.18),
+        -12px -12px 24px rgba(255,255,255,0.98),
+        inset 1px 1px 0 rgba(255,255,255,0.96);
+    }
+
+    .portal-icon{
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#86a7d7;
+      background:linear-gradient(145deg, #fdfefe, #dfeaf7);
+      box-shadow:
+        inset 2px 2px 5px rgba(255,255,255,0.92),
+        inset -3px -4px 8px rgba(130,154,188,0.12),
+        3px 4px 8px rgba(126,145,170,0.11);
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .dream-progress{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:9px 22px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.56);
+      box-shadow:inset 5px 5px 12px rgba(132,151,178,0.09), inset -6px -6px 14px rgba(255,255,255,0.9);
+      margin-bottom:22px;
+      transition:transform 240ms ease;
+    }
+
+    .dream-progress span{
+      width:13px;
+      height:13px;
+      border-radius:50%;
+      background:#d6dde7;
+      box-shadow:0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .dream-progress span.active{
+      background:#86a7d7;
+      box-shadow:0 4px 10px rgba(123,154,205,0.25);
+    }
+
+    .dream-primary{
+      width:min(820px, 86vw);
+      min-height:76px;
+      color:#ffffff;
+      background:linear-gradient(145deg, #b4d0ef, #86a8d8);
+      font-size:clamp(22px, 2.7vw, 38px);
+      font-weight:500;
+      letter-spacing:0;
+      text-indent:0;
+      text-shadow:0 2px 10px rgba(81,113,158,0.24);
+      transition:transform 240ms ease, box-shadow 180ms ease, background 180ms ease;
+      box-shadow:
+        12px 16px 28px rgba(126,151,187,0.22),
+        -10px -10px 24px rgba(255,255,255,0.95),
+        inset 2px 2px 4px rgba(255,255,255,0.42),
+        inset -5px -8px 16px rgba(85,119,166,0.12);
+    }
+
+    .dream-primary:hover,
+    .detail-link:hover{
+      transform:translateY(-3px);
+    }
+
+    @media (min-width:861px){
+      .dream-shell.detail-open .dream-title-block,
+      .dream-shell.detail-open .dream-world-stage,
+      .dream-shell.detail-open .portal-strip,
+      .dream-shell.detail-open .dream-progress,
+      .dream-shell.detail-open .dream-primary{
+        transform:translateX(-230px);
+      }
+
+      .dream-shell.detail-open .dream-primary:hover{
+        transform:translateX(-230px) translateY(-3px);
+      }
+    }
+
+    .detail-layer{
+      position:absolute;
+      top:126px;
+      right:44px;
+      width:min(470px, calc(100% - 88px));
+      max-height:calc(100vh - 164px);
+      padding:32px;
+      border-radius:42px;
+      background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(239,245,252,0.8));
+      border:1px solid rgba(255,255,255,0.82);
+      box-shadow:
+        22px 26px 54px rgba(118,137,164,0.2),
+        -14px -14px 34px rgba(255,255,255,0.92),
+        inset 1px 1px 0 rgba(255,255,255,0.92);
+      backdrop-filter:blur(22px);
+      opacity:0;
+      pointer-events:none;
+      transform:translateX(28px) scale(0.98);
+      transition:opacity 220ms ease, transform 220ms ease;
+      overflow:auto;
+      z-index:20;
+    }
+
+    .detail-layer.open{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateX(0) scale(1);
+    }
+
+    .detail-close{
+      position:absolute;
+      top:18px;
+      right:18px;
+      width:42px;
+      height:42px;
+      border:1px solid rgba(255,255,255,0.82);
+      border-radius:50%;
+      color:#8793a5;
+      background:linear-gradient(145deg, #ffffff, #edf3f9);
+      box-shadow:6px 7px 14px rgba(132,151,178,0.14), -6px -6px 14px rgba(255,255,255,0.94);
+      font-size:24px;
+      line-height:1;
+      cursor:pointer;
+    }
+
+    .detail-kicker{
+      color:#8ca7ce;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:0;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+
+    .detail-layer h2{
+      margin:0 48px 14px 0;
+      color:#5f6d80;
+      font-size:clamp(30px, 3vw, 44px);
+      font-weight:500;
+      line-height:1.15;
+      letter-spacing:0;
+    }
+
+    .detail-layer p{
+      margin:0 0 22px;
+      color:#7d899b;
+      font-size:15px;
+      line-height:1.8;
+      font-weight:600;
+    }
+
+    .detail-stats{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .detail-stat,
+    .detail-preview-item{
+      border-radius:22px;
+      background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(235,242,250,0.78));
+      border:1px solid rgba(255,255,255,0.8);
+      box-shadow:inset 1px 1px 0 rgba(255,255,255,0.88), 6px 8px 16px rgba(132,151,178,0.1);
+    }
+
+    .detail-stat{
+      min-height:78px;
+      padding:14px 12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:4px;
+    }
+
+    .detail-stat strong{
+      color:#789bd0;
+      font-size:18px;
+      line-height:1.1;
+    }
+
+    .detail-stat span{
+      color:#96a1b1;
+      font-size:11px;
+      font-weight:800;
+      line-height:1.2;
+    }
+
+    .detail-preview{
+      display:grid;
+      gap:12px;
+      margin-bottom:22px;
+    }
+
+    .detail-preview-item{
+      min-height:76px;
+      padding:14px 16px;
+      display:grid;
+      grid-template-columns:44px 1fr;
+      align-items:center;
+      gap:12px;
+    }
+
+    .detail-preview-item::before{
+      content:attr(data-mark);
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      color:#83a4d4;
+      background:linear-gradient(145deg, #ffffff, #e5eef8);
+      box-shadow:inset 2px 2px 5px rgba(255,255,255,0.9), inset -3px -4px 8px rgba(130,154,188,0.12);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .detail-preview-item strong{
+      display:block;
+      color:#637185;
+      font-size:13px;
+      line-height:1.35;
+      margin-bottom:3px;
+    }
+
+    .detail-preview-item span{
+      display:block;
+      color:#96a1b1;
+      font-size:11px;
+      font-weight:700;
+      line-height:1.35;
+    }
+
+    .detail-link{
+      width:100%;
+      min-height:58px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      color:#ffffff;
+      background:linear-gradient(145deg, #b4d0ef, #86a8d8);
+      text-shadow:0 1px 8px rgba(81,113,158,0.22);
+    }
+
+    @keyframes dreamWorldFloat{
+      0%, 100%{transform:translateY(0) rotate(0deg);}
+      50%{transform:translateY(-14px) rotate(-0.7deg);}
+    }
+
+    @media (max-width:1100px){
+      .dream-shell{
+        padding-left:28px;
+        padding-right:28px;
+      }
+
+      .round-control{
+        top:88px;
+      }
+
+      .menu-control{left:28px;}
+      .sun-control{right:28px;}
+
+      .portal-strip{
+        grid-template-columns:repeat(5, minmax(92px, 1fr));
+        gap:12px;
+      }
+
+      .portal-pill{
+        min-height:58px;
+        padding:0 10px;
+        font-size:14px;
+      }
+
+      .detail-layer{
+        right:28px;
+      }
+    }
+
+    @media (max-width:860px){
+      .dream-home{
+        min-height:auto;
+      }
+
+      .dream-shell{
+        min-height:100vh;
+        padding:100px 18px 34px;
+        grid-template-rows:auto auto auto auto auto;
+      }
+
+      .round-control{
+        top:82px;
+        width:58px;
+        height:58px;
+      }
+
+      .menu-control{left:18px;}
+      .sun-control{right:18px;}
+
+      .dream-title-block h1{
+        font-size:42px;
+        letter-spacing:0;
+        text-indent:0;
+      }
+
+      .dream-title-block p{
+        font-size:13px;
+        letter-spacing:0;
+        text-indent:0;
+      }
+
+      .dream-world-stage{
+        width:min(94vw, 520px);
+        min-width:0;
+        margin:8px auto 0;
+      }
+
+      .portal-strip{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        width:min(500px, 100%);
+        margin-top:4px;
+      }
+
+      .portal-pill:first-child{
+        grid-column:1 / -1;
+      }
+
+      .dream-progress{
+        margin-bottom:16px;
+      }
+
+      .dream-primary{
+        min-height:66px;
+        font-size:26px;
+      }
+
+      .detail-layer{
+        position:fixed;
+        top:auto;
+        right:12px;
+        left:12px;
+        bottom:14px;
+        width:auto;
+        max-height:min(72vh, 620px);
+        padding:28px 22px 22px;
+        border-radius:34px;
+        transform:translateY(28px) scale(0.98);
+      }
+
+      .detail-layer.open{
+        transform:translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width:520px){
+      .portal-strip{
+        gap:10px;
+      }
+
+      .portal-pill{
+        min-height:54px;
+      }
+
+      .portal-icon{
+        width:26px;
+        height:26px;
+      }
+
+      .detail-stats{
+        grid-template-columns:1fr;
+      }
+    }
+
+    /* Compact mockup-style first screen */
+    @media (min-width:861px){
+      .dream-shell{
+        width:min(100%, 1640px);
+        padding:126px 34px 26px;
+        grid-template-columns:minmax(0, 1fr) minmax(390px, 34vw);
+        grid-template-rows:auto minmax(240px, 1fr) auto auto;
+        column-gap:24px;
+        align-items:center;
+        place-items:stretch;
+      }
+
+      .dream-title-block{
+        grid-column:1;
+        grid-row:1;
+        justify-self:start;
+        align-self:end;
+        width:min(460px, 42vw);
+        margin:0 0 0 74px;
+        text-align:left;
+      }
+
+      .dream-title-block h1{
+        font-size:clamp(42px, 4.2vw, 62px);
+        font-family:Georgia, "Times New Roman", serif;
+        font-weight:400;
+        line-height:1;
+      }
+
+      .dream-title-block p{
+        margin-top:14px;
+        color:#a8b3c4;
+        font-size:13px;
+        font-weight:700;
+      }
+
+      .dream-title-block::after{
+        content:"";
+        display:block;
+        width:76px;
+        height:2px;
+        margin-top:22px;
+        background:linear-gradient(90deg, #e97fa3, rgba(164,186,222,0.12));
+      }
+
+      .dream-world-stage{
+        grid-column:1;
+        grid-row:1 / 4;
+        justify-self:center;
+        align-self:center;
+        width:min(40vw, 560px);
+        min-width:420px;
+        margin:26px 0 0 132px;
+        z-index:-1;
+      }
+
+      .dream-world-art{
+        width:100%;
+      }
+
+      .portal-strip{
+        grid-column:1;
+        grid-row:3;
+        width:min(760px, 100%);
+        display:flex;
+        align-items:end;
+        justify-content:center;
+        gap:22px;
+        margin:0 auto 18px;
+        padding:0 18px;
+      }
+
+      .portal-pill{
+        width:118px;
+        min-height:174px;
+        padding:15px 12px 12px;
+        border-radius:64px 64px 22px 22px;
+        flex-direction:column;
+        gap:12px;
+        color:#3f4b5e;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.74), rgba(240,245,251,0.68)),
+          radial-gradient(circle at 50% 16%, rgba(255,255,255,0.94), transparent 48%);
+        box-shadow:
+          10px 12px 22px rgba(132,151,178,0.14),
+          -10px -10px 22px rgba(255,255,255,0.94),
+          inset 5px 5px 16px rgba(255,255,255,0.72),
+          inset -8px -10px 20px rgba(126,151,187,0.08);
+      }
+
+      .portal-pill.active{
+        width:146px;
+        min-height:198px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.86), rgba(247,241,246,0.72)),
+          radial-gradient(circle at 50% 16%, rgba(255,255,255,0.98), transparent 50%);
+        box-shadow:
+          16px 18px 34px rgba(132,151,178,0.18),
+          -12px -12px 26px rgba(255,255,255,0.98),
+          inset 5px 5px 16px rgba(255,255,255,0.8),
+          inset -9px -12px 22px rgba(205,151,177,0.08);
+      }
+
+      .portal-name{
+        font-size:17px;
+        font-weight:600;
+        line-height:1.1;
+      }
+
+      .portal-dot{
+        width:7px;
+        height:7px;
+        border-radius:50%;
+        background:#86a7d7;
+        box-shadow:0 3px 8px rgba(123,154,205,0.25);
+      }
+
+      .portal-pill[data-layer="lab"] .portal-dot{background:#e879a4;}
+      .portal-pill[data-layer="toolkit"] .portal-dot{background:#9fc8b2;}
+      .portal-pill[data-layer="path"] .portal-dot{background:#e7b894;}
+      .portal-pill[data-layer="signal"] .portal-dot{background:#b9a9df;}
+
+      .portal-visual{
+        position:relative;
+        width:62px;
+        height:62px;
+        border-radius:23px;
+        display:block;
+        background:linear-gradient(145deg, #ffffff, #e5eef9);
+        box-shadow:
+          8px 10px 18px rgba(132,151,178,0.13),
+          -7px -7px 16px rgba(255,255,255,0.96),
+          inset 2px 2px 5px rgba(255,255,255,0.9),
+          inset -4px -5px 10px rgba(126,151,187,0.08);
+      }
+
+      .portal-visual::before,
+      .portal-visual::after{
+        content:"";
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%, -50%);
+      }
+
+      .world-visual::before{
+        width:36px;
+        height:36px;
+        border-radius:50%;
+        background:
+          radial-gradient(circle at 30% 28%, #ffffff, transparent 28%),
+          linear-gradient(145deg, #cfe0f7, #93b1de);
+      }
+
+      .world-visual::after{
+        width:49px;
+        height:19px;
+        border:3px solid rgba(147,177,222,0.5);
+        border-radius:50%;
+        transform:translate(-50%, -50%) rotate(-18deg);
+      }
+
+      .lab-visual::before{
+        width:27px;
+        height:36px;
+        border-radius:10px 10px 16px 16px;
+        background:
+          linear-gradient(180deg, transparent 0 44%, rgba(232,121,164,0.48) 45%),
+          linear-gradient(145deg, rgba(255,255,255,0.96), rgba(224,234,247,0.8));
+        border:3px solid rgba(255,255,255,0.88);
+        box-shadow:0 10px 16px rgba(232,121,164,0.12);
+      }
+
+      .lab-visual::after{
+        width:14px;
+        height:19px;
+        top:19px;
+        border-radius:8px 8px 2px 2px;
+        background:linear-gradient(180deg, #dfeaf7, #ffffff);
+      }
+
+      .toolkit-visual::before{
+        width:38px;
+        height:26px;
+        border-radius:8px 8px 14px 14px;
+        background:linear-gradient(145deg, #f5eadf, #d8b695);
+        box-shadow:inset 0 10px 0 rgba(255,255,255,0.38);
+      }
+
+      .toolkit-visual::after{
+        width:34px;
+        height:34px;
+        background:
+          linear-gradient(90deg, transparent 0 30%, #90acd8 31% 38%, transparent 39%),
+          linear-gradient(120deg, transparent 0 42%, #e6b58d 43% 49%, transparent 50%),
+          linear-gradient(70deg, transparent 0 50%, #a9c9b7 51% 57%, transparent 58%);
+        top:38%;
+      }
+
+      .path-visual::before{
+        width:34px;
+        height:45px;
+        border-radius:26px 26px 4px 4px;
+        border:8px solid #dcc2a6;
+        border-bottom:0;
+        background:transparent;
+      }
+
+      .path-visual::after{
+        width:42px;
+        height:13px;
+        border-radius:18px 18px 4px 4px;
+        background:linear-gradient(145deg, #ffffff, #e7edf5);
+        top:66%;
+      }
+
+      .signal-visual::before{
+        width:35px;
+        height:35px;
+        border-radius:50%;
+        background:
+          radial-gradient(circle at 50% 50%, transparent 0 34%, rgba(133,163,211,0.7) 36% 42%, transparent 44%),
+          conic-gradient(from 230deg, transparent 0 74%, #97afd8 75% 86%, transparent 87%);
+      }
+
+      .signal-visual::after{
+        width:18px;
+        height:10px;
+        border-radius:50% 50% 4px 4px;
+        background:#b8c7dc;
+        top:66%;
+      }
+
+      .dream-progress{
+        display:none;
+      }
+
+      .dream-primary{
+        grid-column:1;
+        grid-row:4;
+        justify-self:center;
+        width:340px;
+        min-height:56px;
+        font-size:18px;
+        margin:0;
+      }
+
+      .detail-layer{
+        position:relative;
+        grid-column:2;
+        grid-row:1 / 5;
+        top:auto;
+        right:auto;
+        align-self:stretch;
+        width:100%;
+        max-height:none;
+        min-height:calc(100vh - 152px);
+        padding:22px 22px 78px;
+        border-radius:36px;
+        overflow:hidden;
+      }
+
+      .detail-layer.open{
+        transform:none;
+      }
+
+      .dream-shell.detail-open .dream-title-block,
+      .dream-shell.detail-open .dream-world-stage,
+      .dream-shell.detail-open .portal-strip,
+      .dream-shell.detail-open .dream-primary{
+        transform:none;
+      }
+
+      .dream-shell.detail-open .dream-primary:hover{
+        transform:translateY(-3px);
+      }
+
+      .detail-close{
+        width:40px;
+        height:40px;
+      }
+
+      .detail-kicker{
+        display:none;
+      }
+
+      .detail-layer h2{
+        margin:10px 50px 18px 42px;
+        font-size:22px;
+        font-weight:800;
+        color:#30394a;
+      }
+
+      .detail-layer h2::after{
+        content:"";
+        display:inline-block;
+        width:8px;
+        height:8px;
+        margin-left:10px;
+        background:#e879a4;
+        clip-path:polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+      }
+
+      .detail-layer p{
+        display:none;
+      }
+
+      .detail-stats{
+        grid-template-columns:1fr 1fr;
+        gap:14px;
+        margin-bottom:14px;
+      }
+
+      .detail-stat{
+        min-height:92px;
+        padding:18px;
+        border-radius:20px;
+      }
+
+      .detail-stat:first-child{
+        grid-column:1 / -1;
+        min-height:160px;
+        justify-content:end;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.18), rgba(241,246,253,0.92)),
+          url("./assets/generated/portfolio-dream-world.png") center 42% / cover no-repeat;
+        border:2px solid rgba(221,230,245,0.9);
+      }
+
+      .detail-stat strong{
+        font-size:17px;
+        color:#30394a;
+      }
+
+      .detail-stat span{
+        font-size:11px;
+        font-weight:700;
+      }
+
+      .detail-preview{
+        grid-template-columns:1fr;
+        gap:9px;
+        margin:0;
+      }
+
+      .detail-preview-item{
+        min-height:58px;
+        grid-template-columns:50px 1fr;
+        padding:10px;
+        border-radius:16px;
+      }
+
+      .detail-preview-item:first-child{
+        border:2px solid #8aaef0;
+      }
+
+      .detail-preview-item::before{
+        width:42px;
+        height:34px;
+        border-radius:10px;
+        background:
+          linear-gradient(145deg, rgba(255,255,255,0.88), rgba(226,236,249,0.72)),
+          url("./assets/generated/portfolio-dream-world.png") center / cover no-repeat;
+        color:transparent;
+      }
+
+      .detail-link{
+        position:absolute;
+        left:22px;
+        right:22px;
+        bottom:22px;
+        width:auto;
+        min-height:48px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2910,37 +3905,75 @@
   <div class="snap" id="snap">
     
     <!-- HOME -->
-    <section class="panel" id="home">
-      <div class="wrap">
-        <div class="hero">
-          <div class="hero-copy">
-            <h1 data-i18n="home.title">I'm <span class="accent">Xiaoya</span>,<br>Full-stack Engineer</h1>
-          </div>
-          
-          <!-- Photos -->
-          <div class="hero-visual" aria-label="Soft 3D portfolio scene">
-            <div class="dream-showcase">
-              <img class="dream-art" src="./assets/generated/portfolio-dream-world.png" alt="Pastel 3D floating engineer world">
-              <span class="visual-chip chip-left">AI / RAG</span>
-              <span class="visual-chip chip-right">Spring Boot</span>
-              <span class="visual-chip chip-bottom">Tokyo</span>
-            </div>
-            <div class="photo-grid">
-              <div class="photo-frame">
-                <img src="./assets/home/hero.png" alt="Xiaoya Chen hero photo">
-              </div>
-              <div class="photo-frame">
-                <img src="./assets/home/cat.JPG" alt="My pet">
-              </div>
-              <div class="photo-frame">
-                <img src="./assets/home/BF1CF9C6-4557-4A97-B479-41B221770BBA.jpeg" alt="My life">
-              </div>
-              <div class="photo-frame">
-                <img src="./assets/home/CC1D3165-7481-4493-9633-572C01036230.jpeg" alt="My journey">
-              </div>
-            </div>
-          </div>
+    <section class="panel dream-home" id="home">
+      <div class="dream-shell">
+        <button class="round-control menu-control" type="button" aria-label="Open portfolio map">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button class="round-control sun-control" type="button" aria-label="Toggle dream light">
+          <span></span>
+        </button>
+
+        <div class="dream-title-block">
+          <h1>Xiaoya Chen</h1>
+          <p>PORTFOLIO DREAM WORLD</p>
         </div>
+
+        <div class="dream-world-stage" aria-label="Pastel 3D portfolio dream world">
+          <img class="dream-world-art" src="./assets/generated/portfolio-dream-world.png" alt="Pastel 3D floating portfolio world">
+          <span class="tiny-star star-a"></span>
+          <span class="tiny-star star-b"></span>
+          <span class="tiny-star star-c"></span>
+        </div>
+
+        <div class="portal-strip" aria-label="Portfolio portals">
+          <button class="portal-pill active" type="button" data-layer="lab">
+            <span class="portal-visual lab-visual" aria-hidden="true"></span>
+            <span class="portal-name">ラボ</span>
+            <span class="portal-dot"></span>
+          </button>
+          <button class="portal-pill" type="button" data-layer="world">
+            <span class="portal-visual world-visual" aria-hidden="true"></span>
+            <span class="portal-name">世界</span>
+            <span class="portal-dot"></span>
+          </button>
+          <button class="portal-pill" type="button" data-layer="toolkit">
+            <span class="portal-visual toolkit-visual" aria-hidden="true"></span>
+            <span class="portal-name">道具箱</span>
+            <span class="portal-dot"></span>
+          </button>
+          <button class="portal-pill" type="button" data-layer="path">
+            <span class="portal-visual path-visual" aria-hidden="true"></span>
+            <span class="portal-name">経歴</span>
+            <span class="portal-dot"></span>
+          </button>
+          <button class="portal-pill" type="button" data-layer="signal">
+            <span class="portal-visual signal-visual" aria-hidden="true"></span>
+            <span class="portal-name">連絡</span>
+            <span class="portal-dot"></span>
+          </button>
+        </div>
+
+        <div class="dream-progress" aria-hidden="true">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <button class="dream-primary" type="button" data-layer="lab" id="dreamPrimary">ラボへ入る</button>
+
+        <aside class="detail-layer" id="detailLayer" aria-live="polite">
+          <button class="detail-close" id="detailClose" type="button" aria-label="Close detail layer">×</button>
+          <div class="detail-kicker" id="detailKicker">選択中の入口</div>
+          <h2 id="detailTitle">プロジェクト詳細</h2>
+          <p id="detailSummary"></p>
+          <div class="detail-stats" id="detailStats"></div>
+          <div class="detail-preview" id="detailPreview"></div>
+          <a class="detail-link" id="detailLink" href="#work" data-nav>詳しく見る</a>
+        </aside>
       </div>
     </section>
 
@@ -3891,6 +4924,279 @@
         setLanguage(lang);
       });
     });
+
+    // ===== Two-layer dream home =====
+    const layerContent = {
+      ja: {
+        lab: {
+          label: "ラボ",
+          action: "ラボへ入る",
+          kicker: "選択中の入口",
+          title: "プロジェクト詳細",
+          summary: "AI/RAG、iOS アプリ、Backoffice 自動化など、実装したプロジェクトを小さなラボとして開きます。",
+          link: "詳しく見る",
+          href: "#work",
+          stats: [
+            ["AI/RAG", "調査・文書検索"],
+            ["iOS", "公開済みアプリ"],
+            ["Ops", "業務自動化"]
+          ],
+          items: [
+            ["Multi-Agent Deep Research", "LangGraph / RAG / 引用付きレポート"],
+            ["Document AI Search", "PDF アップロード / 日英ナレッジ検索"],
+            ["Cloud Agent Platform", "マルチエージェント顧客対応"]
+          ]
+        },
+        world: {
+          label: "世界",
+          action: "世界を見る",
+          kicker: "選択中の入口",
+          title: "プロフィール",
+          summary: "日本、イギリス、旅、山歩き。コードの外側にある経験も、ものづくりの感覚につながっています。",
+          link: "プロフィールへ",
+          href: "#about",
+          stats: [
+            ["2014", "来日"],
+            ["Waseda", "学生生活"],
+            ["Tokyo", "現在の拠点"]
+          ],
+          items: [
+            ["プロフィール", "バックエンド軸のフルスタックエンジニア"],
+            ["旅", "日本 / イギリス / Camino de Santiago"],
+            ["制作", "好奇心をプロダクトに変える"]
+          ]
+        },
+        toolkit: {
+          label: "道具箱",
+          action: "道具箱を開く",
+          kicker: "選択中の入口",
+          title: "スキル",
+          summary: "Java / Kotlin を中心に、Vue.js、AWS、Kubernetes まで。実務で使う道具を整理した棚です。",
+          link: "スキルへ",
+          href: "#skills",
+          stats: [
+            ["Java", "バックエンド軸"],
+            ["Vue", "画面開発"],
+            ["AWS", "クラウド運用"]
+          ],
+          items: [
+            ["バックエンド", "Java / Kotlin / Spring Boot / MyBatis"],
+            ["フロントエンド", "Vue.js / JavaScript / HTML / CSS"],
+            ["DevOps", "AWS / Docker / Kubernetes / Linux"]
+          ]
+        },
+        path: {
+          label: "経歴",
+          action: "経歴を見る",
+          kicker: "選択中の入口",
+          title: "経歴",
+          summary: "学びと仕事の流れを、時系列の履歴ではなく、次につながる道として見せます。",
+          link: "経歴へ",
+          href: "#timeline",
+          stats: [
+            ["2022+", "エンジニア開始"],
+            ["2025", "フルスタック"],
+            ["PMP", "プロジェクト視点"]
+          ],
+          items: [
+            ["現職", "Backoffice 開発・自動化"],
+            ["前職", "決済システム・運用改善"],
+            ["学歴", "早稲田大学 / シェフィールド大学院"]
+          ]
+        },
+        signal: {
+          label: "連絡",
+          action: "連絡する",
+          kicker: "選択中の入口",
+          title: "連絡先",
+          summary: "連絡先と公開リンク。気になるプロジェクトがあれば、ここからすぐに接続できます。",
+          link: "連絡先へ",
+          href: "#contact",
+          stats: [
+            ["Tokyo", "所在地"],
+            ["日/英/中", "対応言語"],
+            ["GitHub", "公開作品"]
+          ],
+          items: [
+            ["Email", "yamashitapp@gmail.com"],
+            ["GitHub", "github.com/xiaoyachen0902"],
+            ["言語", "日本語 / English / 中文"]
+          ]
+        }
+      },
+      en: {
+        lab: {
+          label: "Lab",
+          action: "Enter Lab",
+          kicker: "Selected Portal",
+          title: "Project Detail",
+          summary: "Open a compact lab of shipped projects across AI/RAG, iOS apps, and Backoffice automation.",
+          link: "View full section",
+          href: "#work",
+          stats: [
+            ["AI/RAG", "Research and document search"],
+            ["iOS", "Published personal apps"],
+            ["Ops", "Backoffice automation"]
+          ],
+          items: [
+            ["Multi-Agent Deep Research", "LangGraph / RAG / cited reports"],
+            ["Document AI Search", "PDF upload / bilingual knowledge base"],
+            ["Cloud Agent Platform", "Multi-agent customer support"]
+          ]
+        },
+        world: {
+          label: "World",
+          action: "Enter World",
+          kicker: "Selected Portal",
+          title: "World",
+          summary: "Japan, the UK, travel, and mountain paths. The experiences outside code shape the way I build products.",
+          link: "Open profile",
+          href: "#about",
+          stats: [
+            ["2014", "Moved to Japan"],
+            ["Waseda", "Culture and studies"],
+            ["Tokyo", "Current base"]
+          ],
+          items: [
+            ["Profile", "Full-stack engineer with backend focus"],
+            ["Journey", "Japan / UK / Camino de Santiago"],
+            ["Creation", "Curiosity as a product engine"]
+          ]
+        },
+        toolkit: {
+          label: "Toolkit",
+          action: "Open Toolkit",
+          kicker: "Selected Portal",
+          title: "Toolkit",
+          summary: "A quiet shelf of tools I use in real projects, from Java / Kotlin to Vue.js, AWS, and Kubernetes.",
+          link: "Open skills",
+          href: "#skills",
+          stats: [
+            ["Java", "Backend core"],
+            ["Vue", "Frontend work"],
+            ["AWS", "Cloud and ops"]
+          ],
+          items: [
+            ["Backend", "Java / Kotlin / Spring Boot / MyBatis"],
+            ["Frontend", "Vue.js / JavaScript / HTML / CSS"],
+            ["DevOps", "AWS / Docker / Kubernetes / Linux"]
+          ]
+        },
+        path: {
+          label: "Path",
+          action: "Open Path",
+          kicker: "Selected Portal",
+          title: "Path",
+          summary: "A career path shown as a route toward the next build, not just a chronological resume.",
+          link: "Open experience",
+          href: "#timeline",
+          stats: [
+            ["2022+", "Engineering career"],
+            ["2025", "Full-stack engineer"],
+            ["PMP", "Project mindset"]
+          ],
+          items: [
+            ["Current", "Backoffice development and automation"],
+            ["Previous", "Payment systems and operations"],
+            ["Education", "Waseda University / University of Sheffield"]
+          ]
+        },
+        signal: {
+          label: "Signal",
+          action: "Send Signal",
+          kicker: "Selected Portal",
+          title: "Signal",
+          summary: "Contact details and public links for the projects you want to talk about next.",
+          link: "Open contact",
+          href: "#contact",
+          stats: [
+            ["Tokyo", "Location"],
+            ["JP/EN/CN", "Languages"],
+            ["GitHub", "Public work"]
+          ],
+          items: [
+            ["Email", "yamashitapp@gmail.com"],
+            ["GitHub", "github.com/xiaoyachen0902"],
+            ["Languages", "Japanese / English / Chinese"]
+          ]
+        }
+      }
+    };
+
+    const detailLayer = document.getElementById("detailLayer");
+    const detailClose = document.getElementById("detailClose");
+    const detailKicker = document.getElementById("detailKicker");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailSummary = document.getElementById("detailSummary");
+    const detailStats = document.getElementById("detailStats");
+    const detailPreview = document.getElementById("detailPreview");
+    const detailLink = document.getElementById("detailLink");
+    const dreamShell = document.querySelector(".dream-shell");
+    const dreamPrimary = document.getElementById("dreamPrimary");
+    const portalButtons = Array.from(document.querySelectorAll("[data-layer]"));
+    const progressDots = Array.from(document.querySelectorAll(".dream-progress span"));
+    const layerOrder = ["lab", "world", "toolkit", "path", "signal"];
+    let activeLayerKey = "lab";
+
+    function renderDetailLayer(key, shouldOpen = true) {
+      const content = layerContent[currentLang]?.[key] || layerContent.en[key];
+      if (!content) return;
+
+      activeLayerKey = key;
+      detailKicker.textContent = content.kicker;
+      detailTitle.textContent = content.title;
+      detailSummary.textContent = content.summary;
+      detailStats.innerHTML = content.stats.map(([value, label]) => (
+        `<div class="detail-stat"><strong>${value}</strong><span>${label}</span></div>`
+      )).join("");
+      detailPreview.innerHTML = content.items.map(([title, text], index) => (
+        `<div class="detail-preview-item" data-mark="${String(index + 1).padStart(2, "0")}"><div><strong>${title}</strong><span>${text}</span></div></div>`
+      )).join("");
+      detailLink.textContent = content.link;
+      detailLink.setAttribute("href", content.href);
+
+      portalButtons.forEach(button => {
+        const buttonKey = button.getAttribute("data-layer");
+        const buttonContent = layerContent[currentLang]?.[buttonKey] || layerContent.en[buttonKey];
+        const name = button.querySelector(".portal-name");
+        if (name && buttonContent?.label) name.textContent = buttonContent.label;
+        button.classList.toggle("active", buttonKey === key);
+      });
+      if (dreamPrimary) dreamPrimary.textContent = content.action;
+      const progressIndex = Math.max(0, Math.min(progressDots.length - 1, layerOrder.indexOf(key)));
+      progressDots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === progressIndex);
+      });
+
+      if (shouldOpen) {
+        detailLayer.classList.add("open");
+        dreamShell?.classList.add("detail-open");
+      }
+    }
+
+    portalButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        renderDetailLayer(button.getAttribute("data-layer"));
+      });
+    });
+
+    detailClose.addEventListener("click", () => {
+      detailLayer.classList.remove("open");
+      dreamShell?.classList.remove("detail-open");
+    });
+
+    document.querySelector(".menu-control")?.addEventListener("click", () => renderDetailLayer("lab"));
+    document.querySelector(".sun-control")?.addEventListener("click", () => {
+      document.body.classList.toggle("dream-bright");
+    });
+
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        renderDetailLayer(activeLayerKey, detailLayer.classList.contains("open"));
+      });
+    });
+
+    renderDetailLayer("lab", window.innerWidth > 860);
 
     // ===== Project Modals =====
     const overlay = document.getElementById("overlay");
