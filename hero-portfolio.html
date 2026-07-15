@@ -3085,7 +3085,6 @@
     }
 
     .portal-pill,
-    .dream-primary,
     .detail-link{
       min-height:64px;
       border:1px solid rgba(255,255,255,0.8);
@@ -3166,25 +3165,6 @@
       box-shadow:0 4px 10px rgba(123,154,205,0.25);
     }
 
-    .dream-primary{
-      width:min(820px, 86vw);
-      min-height:76px;
-      color:#ffffff;
-      background:linear-gradient(145deg, #b4d0ef, #86a8d8);
-      font-size:clamp(22px, 2.7vw, 38px);
-      font-weight:500;
-      letter-spacing:0;
-      text-indent:0;
-      text-shadow:0 2px 10px rgba(81,113,158,0.24);
-      transition:transform 240ms ease, box-shadow 180ms ease, background 180ms ease;
-      box-shadow:
-        12px 16px 28px rgba(126,151,187,0.22),
-        -10px -10px 24px rgba(255,255,255,0.95),
-        inset 2px 2px 4px rgba(255,255,255,0.42),
-        inset -5px -8px 16px rgba(85,119,166,0.12);
-    }
-
-    .dream-primary:hover,
     .detail-link:hover{
       transform:translateY(-3px);
     }
@@ -3193,13 +3173,8 @@
       .dream-shell.detail-open .dream-title-block,
       .dream-shell.detail-open .dream-world-stage,
       .dream-shell.detail-open .portal-strip,
-      .dream-shell.detail-open .dream-progress,
-      .dream-shell.detail-open .dream-primary{
+      .dream-shell.detail-open .dream-progress{
         transform:translateX(-230px);
-      }
-
-      .dream-shell.detail-open .dream-primary:hover{
-        transform:translateX(-230px) translateY(-3px);
       }
     }
 
@@ -3454,11 +3429,6 @@
         margin-bottom:16px;
       }
 
-      .dream-primary{
-        min-height:66px;
-        font-size:26px;
-      }
-
       .detail-layer{
         position:fixed;
         top:auto;
@@ -3500,7 +3470,7 @@
     @media (min-width:861px){
       .dream-shell{
         width:min(100%, 1640px);
-        padding:126px 34px 26px;
+        padding:64px 34px 26px;
         grid-template-columns:minmax(0, 1fr) minmax(390px, 34vw);
         grid-template-rows:auto minmax(240px, 1fr) auto auto;
         column-gap:24px;
@@ -3733,16 +3703,6 @@
         display:none;
       }
 
-      .dream-primary{
-        grid-column:1;
-        grid-row:4;
-        justify-self:center;
-        width:340px;
-        min-height:56px;
-        font-size:18px;
-        margin:0;
-      }
-
       .detail-layer{
         position:relative;
         grid-column:2;
@@ -3752,7 +3712,7 @@
         align-self:stretch;
         width:100%;
         max-height:none;
-        min-height:calc(100vh - 152px);
+        min-height:calc(100vh - 90px);
         padding:22px 22px 78px;
         border-radius:36px;
         overflow:hidden;
@@ -3764,13 +3724,8 @@
 
       .dream-shell.detail-open .dream-title-block,
       .dream-shell.detail-open .dream-world-stage,
-      .dream-shell.detail-open .portal-strip,
-      .dream-shell.detail-open .dream-primary{
+      .dream-shell.detail-open .portal-strip{
         transform:none;
-      }
-
-      .dream-shell.detail-open .dream-primary:hover{
-        transform:translateY(-3px);
       }
 
       .detail-close{
@@ -3962,8 +3917,6 @@
           <span></span>
           <span></span>
         </div>
-
-        <button class="dream-primary" type="button" data-layer="lab" id="dreamPrimary">ラボへ入る</button>
 
         <aside class="detail-layer" id="detailLayer" aria-live="polite">
           <button class="detail-close" id="detailClose" type="button" aria-label="Close detail layer">×</button>
@@ -4930,7 +4883,6 @@
       ja: {
         lab: {
           label: "ラボ",
-          action: "ラボへ入る",
           kicker: "選択中の入口",
           title: "プロジェクト詳細",
           summary: "AI/RAG、iOS アプリ、Backoffice 自動化など、実装したプロジェクトを小さなラボとして開きます。",
@@ -4949,7 +4901,6 @@
         },
         world: {
           label: "世界",
-          action: "世界を見る",
           kicker: "選択中の入口",
           title: "プロフィール",
           summary: "日本、イギリス、旅、山歩き。コードの外側にある経験も、ものづくりの感覚につながっています。",
@@ -4968,7 +4919,6 @@
         },
         toolkit: {
           label: "道具箱",
-          action: "道具箱を開く",
           kicker: "選択中の入口",
           title: "スキル",
           summary: "Java / Kotlin を中心に、Vue.js、AWS、Kubernetes まで。実務で使う道具を整理した棚です。",
@@ -4987,7 +4937,6 @@
         },
         path: {
           label: "経歴",
-          action: "経歴を見る",
           kicker: "選択中の入口",
           title: "経歴",
           summary: "学びと仕事の流れを、時系列の履歴ではなく、次につながる道として見せます。",
@@ -5006,7 +4955,6 @@
         },
         signal: {
           label: "連絡",
-          action: "連絡する",
           kicker: "選択中の入口",
           title: "連絡先",
           summary: "連絡先と公開リンク。気になるプロジェクトがあれば、ここからすぐに接続できます。",
@@ -5027,7 +4975,6 @@
       en: {
         lab: {
           label: "Lab",
-          action: "Enter Lab",
           kicker: "Selected Portal",
           title: "Project Detail",
           summary: "Open a compact lab of shipped projects across AI/RAG, iOS apps, and Backoffice automation.",
@@ -5046,7 +4993,6 @@
         },
         world: {
           label: "World",
-          action: "Enter World",
           kicker: "Selected Portal",
           title: "World",
           summary: "Japan, the UK, travel, and mountain paths. The experiences outside code shape the way I build products.",
@@ -5065,7 +5011,6 @@
         },
         toolkit: {
           label: "Toolkit",
-          action: "Open Toolkit",
           kicker: "Selected Portal",
           title: "Toolkit",
           summary: "A quiet shelf of tools I use in real projects, from Java / Kotlin to Vue.js, AWS, and Kubernetes.",
@@ -5084,7 +5029,6 @@
         },
         path: {
           label: "Path",
-          action: "Open Path",
           kicker: "Selected Portal",
           title: "Path",
           summary: "A career path shown as a route toward the next build, not just a chronological resume.",
@@ -5103,7 +5047,6 @@
         },
         signal: {
           label: "Signal",
-          action: "Send Signal",
           kicker: "Selected Portal",
           title: "Signal",
           summary: "Contact details and public links for the projects you want to talk about next.",
@@ -5132,7 +5075,6 @@
     const detailPreview = document.getElementById("detailPreview");
     const detailLink = document.getElementById("detailLink");
     const dreamShell = document.querySelector(".dream-shell");
-    const dreamPrimary = document.getElementById("dreamPrimary");
     const portalButtons = Array.from(document.querySelectorAll("[data-layer]"));
     const progressDots = Array.from(document.querySelectorAll(".dream-progress span"));
     const layerOrder = ["lab", "world", "toolkit", "path", "signal"];
@@ -5162,7 +5104,6 @@
         if (name && buttonContent?.label) name.textContent = buttonContent.label;
         button.classList.toggle("active", buttonKey === key);
       });
-      if (dreamPrimary) dreamPrimary.textContent = content.action;
       const progressIndex = Math.max(0, Math.min(progressDots.length - 1, layerOrder.indexOf(key)));
       progressDots.forEach((dot, index) => {
         dot.classList.toggle("active", index === progressIndex);
